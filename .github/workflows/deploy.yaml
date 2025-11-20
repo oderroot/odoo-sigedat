@@ -1,0 +1,64 @@
+---
+name: Cuarto Datos CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "release", "develop", "feature" ] 
+  pull_request:
+    branches: [ "main", "release", "develop", "feature" ]
+
+jobs:
+
+  build-and-push-image:
+    name: Build Docker Image and Deploy to Server
+    runs-on: [ "viserion", "self-hosted", "Linux", "X64" ]
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/feature'
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+    - name: Clonar Repositorio
+      uses: actions/checkout@v4
+
+    - name: Construir Imagen Docker 
+      run:  |
+        echo "⚙️ Construyendo imagen docker..."
+              docker build -t ${{ secrets.IMAGE_NAME }}:latest .
+
+    - name: Depliegue en Docker
+      run: |
+        echo "Desplegando aplicación..."
+        echo "🔴 Deteniendo contenedor existente..."
+              docker stop cuarto-datos
+
+        echo "❌ Eliminando contenedor existente..."
+              docker rm cuarto-datos
+
+        echo "🧹 Depurando el sistema..."
+              docker system prune -f
+
+        echo "🚀 Aplicando nuevo manifiesto... "
+              docker-compose up -d 
+              docker rename cuarto-datos-front_www_1 cuarto-datos
+
+        echo "📄 Listando contenedor..."
+              docker ps -f name=cuarto-datos 
+
+        echo "✅ Nuevo despliegue finalizado con exito" 
+        echo "🔔 Probar URL: https://guatoc.acueducto.com.co/login_datos.php"
+
+
+        
+
+
+
+  
+
+
+        
+    
+
+
+
+  
