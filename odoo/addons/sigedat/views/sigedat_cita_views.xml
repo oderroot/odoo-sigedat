@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.cita
+    Cita
+    =================================================================
+    -->
+    <record id="cita_search" model="ir.ui.view">
+        <field name="name">sigedat.cita.search</field>
+        <field name="model">sigedat.cita</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="id" string="Número de cita"/>
+                <field name="aviso_sap" />
+                <field name="tipo_id" />
+                <field name="solicitud_tramite_id" />
+                <separator string="Estado"/>
+                <filter name="filtro_state_agendada"
+                    string="Agendada"
+                    help="Filtrar agendada"
+                    domain="[('state', '=', 'agendada')]"
+                />
+                <filter name="filtro_state_atendida"
+                    string="Atendida"
+                    help="Filtrar atendida"
+                    domain="[('state', '=', 'atendida')]"
+                />
+                <filter name="filtro_state_cancelada"
+                    string="Cancelada"
+                    help="Filtrar cancelada"
+                    domain="[('state', '=', 'cancelada')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter string="Tipo" context="{'group_by':'tipo_id'}" domain="" name="group_tipo_id"/>
+                    <filter string="Solicitud trámite" context="{'group_by':'solicitud_tramite_id'}" domain="" name="group_solicitud_tramite_id"/>
+                    <filter string="Revisor" context="{'group_by':'revisor_id'}" domain="" name="group_revisor_id"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="cita_form" model="ir.ui.view">
+        <field name="name">sigedat.cita.form</field>
+        <field name="model">sigedat.cita</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false">
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="create_uid" invisible="1"/>
+                        <field name="es_visible_registro" invisible="1"
+                        />
+                        <field name="fecha_inicio" readonly="1"/>
+                        <field name="fecha_fin" readonly="1"/>
+                        <field name="tipo_id" readonly="1"/>
+                        <field name="revisor_id" readonly="1"/>
+                        <field name="solicitud_tramite_id" readonly="1"/>
+                        <field name="aviso_sap" readonly="1"/>
+                    </group>
+                    <notebook>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="cita_tree">
+        <field name="name">sigedat.cita.tree</field>
+        <field name="model">sigedat.cita</field>
+        <field name="arch" type="xml">
+            <tree create="false" default_order="create_date">
+                <field name="solicitud_tramite_id" />
+                <field name="name" />
+                <field name="fecha_inicio" />
+                <field name="fecha_fin" />
+                <field name="aviso_sap" />
+                <field name="tipo_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="cita_calendar" model="ir.ui.view">
+        <field name="name">sigedat.cita.calendar</field>
+        <field name="model">sigedat.cita</field>
+        <field eval="2" name="priority"/>
+        <field name="arch" type="xml">
+            <calendar quick_add="false" color="tipo_id" date_start="fecha_inicio" date_stop="fecha_fin" string="Citas" mode="month">
+                <field name="tipo_id"/>
+                <field name="revisor_id"/>
+                <field name="solicitud_tramite_id"/>
+            </calendar>
+        </field>
+    </record>
+</odoo>

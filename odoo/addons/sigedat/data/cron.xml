@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ir_cron_citas_dia" model="ir.cron">
+            <field name="name">Notificacion de las citas del dia</field>
+            <field eval="True" name="active"/>
+            <field name="model_id" ref="sigedat.model_sigedat_cita"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_citas_diarias()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+        <record id="ir_cron_solicitudes_cancelar" model="ir.cron">
+            <field name="name">Notificacion de las solicitudes temporales a cancelar</field>
+            <field eval="True" name="active"/>
+            <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_solicitud_temporal_inactiva()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</odoo>

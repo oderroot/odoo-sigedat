@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="res.groups" id="base.group_user">
+            <field name="name">Acceso a Backend</field>
+        </record>
+        <record model="res.groups" id="group_funcionario">
+            <field name="name">Funcionario</field>
+            <field name="category_id" ref="base.module_category_human_resources"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+
+    <record model="ir.module.category" id="category_base_conf">
+        <field name="name">Base EAAB</field>
+        <field name="sequence">0</field>
+        <field name="visible" eval="0" />
+    </record>
+
+    </data>
+</odoo>
+

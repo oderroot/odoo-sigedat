@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Plantilla Notificacion citas del dia -->
+    <record id="plantilla_citas_dia" model="mail.template">
+        <field name="name">SIGEDAT: Citas del dia</field>
+        <field name="subject">SIGEDAT Citas del dia de hoy para ${object.revisor_id.name}</field>
+        <field name="email_from">EAAB - SIGEDAT&lt;sigedat@acueducto.com.co&gt;</field>
+        <field name="email_to">${object.revisor_id.persona_id.email}</field>
+        <field name="model_id" ref="sigedat.model_sigedat_cita"/>
+        <field name="body_html"><![CDATA[<h1>Citas del dia de hoy</h1>
+            <p>
+                Cordial saludo, a continuación se muestran las citas que tiene programadas para el dia de hoy.
+            </p>
+            <p>
+                <br><strong>Empresa de Acueducto y Alcantarillado de Bogotá – (EAAB)</strong>
+                </p>
+            <p><strong>Nota:</strong> Mensaje enviado automáticamente por el Sistema SIGEDAT, por favor no responder, ya que el buzón de correo no es monitoreado.</p>
+        ]]></field>
+    </record>
+
+<!-- Plantilla Notificacion aviso solicitud temporal inactiva 1 dia  -->
+    <record id="plantilla_solicitud_temporal_inactiva_1" model="mail.template">
+        <field name="name">SIGEDAT: Solicitudes temporales 1 dia</field>
+        <field name="subject">SIGEDAT La solicitud ${object.name}, esta en estado temporal desde hace un dia</field>
+        <field name="email_from">EAAB - SIGEDAT&lt;sigedat@acueducto.com.co&gt;</field>
+        <field name="email_to">${object.tramite_id.correo_electronico_supervisor},${object.tramite_id.correo_electronico_interventor}</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="body_html"><![CDATA[<h1>Solicitud de trámite ${object.name}</h1>
+            <p>
+                Cordial saludo, la solicitud de trámite del asunto se encuentra en estado temporal desde hace un día, por favor continue con el trámite.
+            </p>
+            <p>
+                <br><strong>Empresa de Acueducto y Alcantarillado de Bogotá – (EAAB)</strong>
+                </p>
+            <p><strong>Nota:</strong> Mensaje enviado automáticamente por el Sistema SIGEDAT, por favor no responder, ya que el buzón de correo no es monitoreado.</p>
+        ]]></field>
+    </record>
+
+<!-- Plantilla Notificacion aviso solicitud temporal inactiva 2 dias  -->
+    <record id="plantilla_solicitud_temporal_inactiva_2" model="mail.template">
+        <field name="name">SIGEDAT: Solicitudes temporales 2 dias</field>
+        <field name="subject">SIGEDAT La solicitud ${object.name}, esta en estado temporal desde hace dos dias</field>
+        <field name="email_from">EAAB - SIGEDAT&lt;sigedat@acueducto.com.co&gt;</field>
+        <field name="email_to">${ctx['direccion']}</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="body_html"><![CDATA[<h1>Solicitud de trámite ${object.name}</h1>
+            <p>
+                Cordial saludo, la solicitud de trámite del asunto se encuentra en estado temporal desde hace dos días, por favor complete el proceso.
+            </p>
+            <p>
+                Si no termina el proceso el día de hoy, mañana sera eliminada la solicitud y podrá perder toda la información cargada.
+            </p>
+            <p>
+                <br><strong>Empresa de Acueducto y Alcantarillado de Bogotá – (EAAB)</strong>
+                </p>
+            <p><strong>Nota:</strong> Mensaje enviado automáticamente por el Sistema SIGEDAT, por favor no responder, ya que el buzón de correo no es monitoreado.</p>
+        ]]></field>
+    </record>
+
+<!-- Plantilla Notificacion aviso solicitud temporal inactiva 3 dias  -->
+    <record id="plantilla_solicitud_temporal_inactiva_3" model="mail.template">
+        <field name="name">SIGEDAT: Solicitudes temporales 3 dias</field>
+        <field name="subject">SIGEDAT La solicitud ${object.name}, esta en estado temporal desde hace tres dias</field>
+        <field name="email_from">EAAB - SIGEDAT&lt;sigedat@acueducto.com.co&gt;</field>
+        <field name="email_to">${ctx['direccion']}</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="body_html"><![CDATA[<h1>Solicitud de trámite ${object.name}</h1>
+            <p>
+                Cordial saludo, la solicitud de trámite del asunto se cancelo, debido a que sobrepaso el tiempo límite de 3 días.
+            </p>
+            <p>
+                <br><strong>Empresa de Acueducto y Alcantarillado de Bogotá – (EAAB)</strong>
+                </p>
+            <p><strong>Nota:</strong> Mensaje enviado automáticamente por el Sistema SIGEDAT, por favor no responder, ya que el buzón de correo no es monitoreado.</p>
+        ]]></field>
+    </record>
+
+
+
+<record id="plantilla_tramite_solicitud" model="mail.template">
+        <field name="name">SIGEDAT Notificación</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="email_from">EAAB - SIGEDAT&lt;sigedat@acueducto.com.co&gt;</field>
+        <field name="email_to">{{ctx['correos']}}</field>
+        <field name="subject">{{ctx['asunto']}}</field>
+        <field name="body_html"><![CDATA[
+            <p>Cordial saludo:</p>
+            <p>
+<t t-out="ctx['mensaje']" t-options="{'widget': 'text'}"/>
+            </p>
+            <p>
+Este correo es de carácter informativo, POR FAVOR NO RESPONDER.
+            </p>
+            <br/>
+            <p>
+Cordialmente:
+            </p>
+            <br/>
+            <br/>
+            <p>
+SIGEDAT
+            </p>
+            <p>
+Sistema de Información Geográfica Unificado Empresarial (SIGUE)
+            </p>
+            <p>
+Dirección Información Técnica y Geográfica (DITG)
+            </p>
+            <p>
+EAAB E.S.P.
+            </p>
+        ]]>
+        </field>
+    </record>
+
+
+    <record id="plantilla_validado_confirmado" model="mail.template">
+        <field name="name">SIGEDAT Notificación</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="email_from">EAAB - SIGEDAT&lt;sigedat@acueducto.com.co&gt;</field>
+        <field name="email_to">{{ctx['correos']}}</field>
+        <field name="subject">Validación Exitosa - {{ctx['tipo_tramite']}} de la cita {{ctx['numero_cita']}}</field>
+        <field name="body_html"><![CDATA[
+            <p>Cordial saludo:</p>
+            <p>
+La <strong>DITG</strong> le informa que el una vez realizada la verificación de la información cargada en la plataforma para el/la <strong><t t-out="ctx['tipo_tramite']"/></strong> del contrato <strong><t t-out="ctx['contrato']"/></strong>, esta <strong>CUMPLE</strong> con los estándares mínimos de calidad necesarios para su aceptación. <t t-out="ctx['mns_topografica']"/>
+            </p>
+            <p>
+                Este correo es de carácter informativo, POR FAVOR NO RESPONDER.
+            </p>
+            <br/>
+            <p>
+                Cordialmente:
+            </p>
+            <br/>
+            <br/>
+            <p>
+SIGEDAT
+            </p>
+            <p>
+Sistema de Información Geográfica Unificado Empresarial (SIGUE)
+            </p>
+            <p>
+Dirección Información Técnica y Geográfica (DITG)
+            </p>
+            <p>
+EAAB E.S.P.
+            </p>
+        ]]>
+        </field>
+    </record>
+
+
+
+<!-- Plantilla Notificacion devolucion solicitud  -->
+    <record id="plantilla_devolucion_solicitud" model="mail.template">
+        <field name="name">SIGEDAT: Devolución de la solicitud</field>
+        <field name="subject">Se ha devuelto la solicitud ${object.name}</field>
+        <field name="email_from">EAAB - SIGEDAT&lt;sigedat@acueducto.com.co&gt;</field>
+        <field name="email_to">${ctx['direccion_notificacion']}</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="body_html"><![CDATA[<h1>Solicitud de trámite ${object.name}</h1>
+            <p>
+                Cordial saludo, la solicitud de trámite del asunto fué devuelta, por favor verifique.
+            </p>
+            <p>
+                <br><strong>Empresa de Acueducto y Alcantarillado de Bogotá – (EAAB)</strong>
+                </p>
+            <p><strong>Nota:</strong> Mensaje enviado automáticamente por el Sistema SIGEDAT, por favor no responder, ya que el buzón de correo no es monitoreado.</p>
+        ]]></field>
+    </record>
+
+<!-- Plantilla Notificacion rechazada solicitud  -->
+    <record id="plantilla_rechazada_solicitud" model="mail.template">
+        <field name="name">SIGEDAT: Rechazo de la solicitud</field>
+        <field name="subject">Se ha rechazado la solicitud ${object.name}</field>
+        <field name="email_from">EAAB - SIGEDAT&lt;sigedat@acueducto.com.co&gt;</field>
+        <field name="email_to">${ctx['direccion_notificacion']}</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="body_html"><![CDATA[<h1>Solicitud de trámite ${object.name}</h1>
+            <p>
+                Cordial saludo, la solicitud de trámite del asunto fué rechazada, por favor verifique.
+            </p>
+            <p>
+                <br><strong>Empresa de Acueducto y Alcantarillado de Bogotá – (EAAB)</strong>
+                </p>
+            <p><strong>Nota:</strong> Mensaje enviado automáticamente por el Sistema SIGEDAT, por favor no responder, ya que el buzón de correo no es monitoreado.</p>
+        ]]></field>
+    </record>
+
+<!-- Plantilla Notificacion devolucion aprobacion solicitud  -->
+    <record id="plantilla_devolucion_aprobacion_solicitud" model="mail.template">
+        <field name="name">SIGEDAT: Devolución de la solicitud</field>
+        <field name="subject">Se ha devuelto la solicitud ${object.name}</field>
+        <field name="email_from">EAAB - SIGEDAT&lt;sigedat@acueducto.com.co&gt;</field>
+        <field name="email_to">${ctx['direccion_notificacion']}</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="body_html"><![CDATA[<h1>Solicitud de trámite ${object.name}</h1>
+            <p>
+                Cordial saludo, la solicitud de trámite del asunto fué devuelta, por favor verifique.
+            </p>
+            <p>
+                <br><strong>Empresa de Acueducto y Alcantarillado de Bogotá – (EAAB)</strong>
+                </p>
+            <p><strong>Nota:</strong> Mensaje enviado automáticamente por el Sistema SIGEDAT, por favor no responder, ya que el buzón de correo no es monitoreado.</p>
+        ]]></field>
+    </record>
+
+<!-- Plantilla Notificacion orden de entrega final  -->
+    <record id="plantilla_entrega_final_solicitud" model="mail.template">
+        <field name="name">SIGEDAT: Orden de entrega final de la solicitud</field>
+        <field name="subject">La solicitud ${object.name}, esta en Orden de entrega final</field>
+        <field name="email_from">EAAB - SIGEDAT&lt;sigedat@acueducto.com.co&gt;</field>
+        <field name="email_to">${ctx['direccion_notificacion']}</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="body_html"><![CDATA[<h1>Solicitud de trámite ${object.name}</h1>
+            <p>
+                Cordial saludo, la solicitud de trámite del asunto esta en estado: Orden de entrega final, por favor verifique.
+            </p>
+            <p>
+                <br><strong>Empresa de Acueducto y Alcantarillado de Bogotá – (EAAB)</strong>
+                </p>
+            <p><strong>Nota:</strong> Mensaje enviado automáticamente por el Sistema SIGEDAT, por favor no responder, ya que el buzón de correo no es monitoreado.</p>
+        ]]></field>
+    </record>
+
+</odoo>

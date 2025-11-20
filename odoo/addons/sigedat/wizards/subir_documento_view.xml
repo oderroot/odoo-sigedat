@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Wizard View
+    =================================================================
+    -->
+    <record model="ir.ui.view" id="sigedat_wizard_subir_documento">
+        <field name="name">Subir Documento</field>
+        <field name="model">sigedat.wizard.subir_documento</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Subir Documento"/>
+                    <div class="card">
+                        <div class="card-body">
+                        <p>
+                            <field name="mensaje" readonly="1"/>
+                        </p>
+                        </div>
+                    </div>
+                    <group>
+                        <field name="solicitud_id" readonly="1"/>
+                        <field name="tipo_documento_id" readonly="1" options="{'no_open': True}" />
+                        <field name="documento_id" invisible="1"/>
+                        <field name="cantidad" readonly="1"/>
+                        <field name="se_esta_editando_archivo" invisible="1"/>
+                        <field name="archivo_nombre" invisible="1"/>
+                        <field name="archivo" filename="archivo_nombre" widget="binary" attrs="{'invisible': [('cantidad','=', 'varios'),('se_esta_editando_archivo', '=', False)]}"/>
+                    </group>
+                    <group attrs="{'invisible': ['|', ('cantidad','=','uno'), ('se_esta_editando_archivo', '=', True)]}" col="1">
+                        <group>
+                            <field name="documento_ids" nolabel="1" readonly="0" context="{'solicitud_tramite_id': solicitud_id, 'tipo_id': tipo_documento_id}" >
+                                <tree editable='bottom'>
+                                    <field name="archivo_nombre" invisible="1"/>
+                                    <field name="archivo" filename="archivo_nombre" widget="binary"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Subir archivo"
+                            name="subir_archivo"
+                            type="object"
+                            class="btn-primary"
+                        />
+                        <button string="Cancelar" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sigedat_wizard_subir_documento_action">
+        <field name="name">Subir Documento</field>
+        <field name="res_model">sigedat.wizard.subir_documento</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

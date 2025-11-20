@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<!--
+=========================================================================
+    Groups Definition
+=========================================================================
+-->
+    <record model="ir.module.category" id="category_sigedat">
+        <field name="name">sigedat: Sistema de Gestión de Datos Técnicos</field>
+        <field name="sequence">0</field>
+        <field name="visible" eval="1" />
+    </record>
+
+    <record id="analista" model="res.groups">
+        <field name="name">Analista</field>
+        <field name="category_id" ref="sigedat.category_sigedat"/>
+    </record>
+
+    <!-- Usuarios Internos -->
+    <record id="usuario_interno" model="res.groups">
+        <field name="name">Interno</field>
+        <field name="category_id" ref="sigedat.category_sigedat"/>
+        <field name="implied_ids"
+            eval="[
+                (4, ref('sigedat.analista')),
+            ]"
+        />
+    </record>
+    <record id="administrador" model="res.groups">
+        <field name="name">Administrador</field>
+        <field name="category_id" ref="sigedat.category_sigedat"/>
+        <field name="implied_ids"
+            eval="[
+                (4, ref('sigedat.usuario_interno')),
+            ]"
+        />
+    </record>
+    <record id="base.user_root" model="res.users">
+        <field name="groups_id" eval="[(4, ref('sigedat.administrador'))]"/>
+    </record>
+    <record id="lider_area" model="res.groups">
+        <field name="name">Líder Área</field>
+        <field name="category_id" ref="sigedat.category_sigedat"/>
+        <field name="implied_ids"
+            eval="[
+                (4, ref('sigedat.usuario_interno')),
+            ]"
+        />
+    </record>
+    <record id="revisor" model="res.groups">
+        <field name="name">Revisor</field>
+        <field name="category_id" ref="sigedat.category_sigedat"/>
+        <field name="implied_ids"
+            eval="[
+                (4, ref('sigedat.usuario_interno')),
+            ]"
+        />
+    </record>
+
+    <!-- Usuarios Externos -->
+    <record id="usuario_externo" model="res.groups">
+        <field name="name">Externo</field>
+        <field name="category_id" ref="sigedat.category_sigedat"/>
+        <field name="implied_ids"
+            eval="[
+                (4, ref('sigedat.analista')),
+            ]"
+        />
+    </record>
+    <record id="principal" model="res.groups">
+        <field name="name">Principal</field>
+        <field name="category_id" ref="sigedat.category_sigedat"/>
+        <field name="implied_ids"
+            eval="[
+                (4, ref('sigedat.usuario_externo')),
+            ]"
+        />
+    </record>
+    <record id="topografia" model="res.groups">
+        <field name="name">Topografía</field>
+        <field name="category_id" ref="sigedat.category_sigedat"/>
+        <field name="implied_ids"
+            eval="[
+                (4, ref('sigedat.usuario_externo')),
+            ]"
+        />
+    </record>
+    <record id="record" model="res.groups">
+        <field name="name">Record</field>
+        <field name="category_id" ref="sigedat.category_sigedat"/>
+        <field name="implied_ids"
+            eval="[
+                (4, ref('sigedat.usuario_externo')),
+            ]"
+        />
+    </record>
+    <record id="final" model="res.groups">
+        <field name="name">Final</field>
+        <field name="category_id" ref="sigedat.category_sigedat"/>
+        <field name="implied_ids"
+            eval="[
+                (4, ref('sigedat.usuario_externo')),
+            ]"
+        />
+    </record>
+
+<!--
+=============================================================================
+    Domain Constraints
+=============================================================================
+-->
+
+
+    <!-- Los usuairos externos, solo puede ver los registros que crearon ellos mismos -->
+    <!-- <record id="sigedat_tramite_externo_acl_read" model="ir.rule">
+        <field name="name">sigedat.tramite externo ve sus propios registros CRUD</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('sigedat.usuario_externo'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record> -->
+
+
+    <!-- Los usuairos externos, solo puede ver los registros que crearon ellos mismos -->
+    <!-- Los usuarios con rol externo solo puede ver los registros de sigedat.tramite en los que están como reador o asociados en equipo de apoyo -->
+    <record id="sigedat_tramite_externo_persona_ids_acl_crud" model="ir.rule">
+        <field name="name">sigedat.tramite creador o solo si está en persona_ids</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite"/>
+        <field name="groups" eval="[(4, ref('sigedat.usuario_externo'))]"/>
+        <field name="domain_force">['|', ('create_uid', '=', user.id), ('persona_ids', 'in', [user.id])]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!-- Usuarios externos pueden ver/editar solicitudes de trámites donde están en persona_ids -->
+    <record id="sigedat_tramite_solicitud_externo_persona_ids_acl_crud" model="ir.rule">
+        <field name="name">sigedat.tramite.solicitud - externo si está en persona_ids del trámite</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="groups" eval="[(4, ref('sigedat.usuario_externo'))]"/>
+        <field name="domain_force">['|', ('create_uid', '=', user.id), ('tramite_id.persona_ids', 'in', [user.id])]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!-- Los administradores, ven todo -->
+    <record id="sigedat_tramite_administrador_acl_crud" model="ir.rule">
+        <field name="name">sigedat.tramite Administrador CRUD</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sigedat.administrador'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!-- Los administradores ven todas las solicitudes -->
+    <record id="sigedat_tramite_solicitud_administrador_acl_crud" model="ir.rule">
+        <field name="name">sigedat.tramite.solicitud - Administrador CRUD</field>
+        <field name="model_id" ref="sigedat.model_sigedat_tramite_solicitud"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sigedat.administrador'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+
+</data>
+</openerp>

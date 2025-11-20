@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<!-- Vista form -->
+    <record model="ir.ui.view" id="registrar_direccion_wizard">
+        <field name="model">base_conf.wizard.registrar_direccion</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="1">
+                       <h1><field name="titulo" nolabel="1"/></h1>
+                    </group>
+                    <group col="2">
+                       <field name="mensaje" nolabel="1"/>
+                    </group>
+                    <group col="10">
+                        <div>
+                            <table class="table table-striped">
+                            <tbody>
+                                <tr >
+                                    <td >
+                                        Ejemplo
+                                    </td>
+                                </tr>
+                                <tr class="ui-widget-content" role="row">
+                                    <td role="gridcell" style="text-align: center;">
+                                        DG(*)
+                                    </td>
+                                    <td role="gridcell" style="text-align: center;">
+                                        84(*)
+                                    </td>
+                                    <td role="gridcell" style="text-align: center;">
+                                        B
+                                    </td>
+                                    <td role="gridcell" style="text-align: center;">
+                                        BIS
+                                    </td>
+                                    <td role="gridcell" style="text-align: center;">
+                                        A
+                                    </td>
+                                    <td role="gridcell" style="text-align: center;">
+                                        SUR
+                                    </td>
+                                    <td role="gridcell" style="text-align: center;" >
+                                        No.8(*)
+                                    </td>
+                                    <td role="gridcell" style="text-align: center;">
+                                        B
+                                    </td>
+                                    <td role="gridcell" style="text-align: center;">
+                                        62
+                                    </td>
+                                    <td role="gridcell" style="text-align: center;">
+                                        ESTE
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <field name="campo_1" nolabel="1"/>
+                                    </td>
+                                    <td>
+                                        <field name="campo_2" nolabel="1" attrs="{'readonly':[('campo_1','=',False),] }"/>
+                                    </td>
+                                    <td>
+                                        <field name="campo_3" nolabel="1" attrs="{'readonly':[('campo_2','=',0),] }"/>
+                                    </td>
+                                    <td>
+                                        <field name="campo_4" nolabel="1" attrs="{'readonly':[('campo_2','=',0),] }"/>
+                                    </td>
+                                    <td>
+                                        <field name="campo_5" nolabel="1" attrs="{'readonly':[('campo_4','=',False),] }"/>
+                                    </td>
+                                    <td>
+                                        <field name="campo_6" nolabel="1" attrs="{'readonly':[('campo_4','=',False),] }"/>
+                                    </td>
+                                    <td>
+                                        <field name="campo_7" nolabel="1" attrs="{'readonly':[('campo_2','=',0),] }"/>
+                                    </td>
+                                    <td>
+                                        <field name="campo_8" nolabel="1" attrs="{'readonly':[('campo_7','=',0),] }"/>
+                                    </td>
+                                    <td>
+                                        <field name="campo_9" nolabel="1" attrs="{'readonly':[('campo_7','=',0),] }"/>
+                                    </td>
+                                    <td>
+                                        <field name="campo_10" nolabel="1" attrs="{'readonly':[('campo_9','=',0),] }"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </group>
+                    <footer>
+                        <button name="registrar_direccion" string="Ingresar Dirección" type="object" class="oe_highlight" />
+                        <button string="Cancelar" class="oe_link" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_registrar_direccion">
+        <field name="name">Ingresar Dirección</field>
+        <field name="res_model">base_conf.wizard.registrar_direccion</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+    </record>
+</data>
+</openerp>

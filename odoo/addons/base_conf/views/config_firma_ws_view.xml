@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--==================================================================================== -->
+    <!-- base_conf.firma_ws Views -->
+    <!--==================================================================================== -->
+        <record id="base_conf_firma_ws_form" model="ir.ui.view">
+            <field name="name">Configuración firma WebService</field>
+            <field name="model">base_conf.firma_ws</field>
+            <field name="arch" type="xml">
+                <form string="Configuración firma WS" class="oe_form_configuration">
+                    <header>
+                        <button string="Guardar" type="object" name="guardar" class="oe_highlight"/>
+                        or
+                        <button string="Cancelar" type="object" name="cancel" class="oe_link"/>
+                    </header>
+                    <group>
+                        <div>
+                            <group string="Parametros para Web Service de firma">
+                                <field name="url_ws_firma" class="oe_inline"/>
+                                <field name="user_firma" class="oe_inline"/>
+                                <field name="pass_firma" password="True" class="oe_inline"/>
+                            </group>
+                        </div>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="base_conf_firma_ws_action" model="ir.actions.act_window">
+            <field name="name">Web Service firma</field>
+            <field name="res_model">base_conf.firma_ws</field>
+            <field name="view_id" ref="base_conf_firma_ws_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+        <menuitem id="base_conf_firma_ws_menu"
+            name="Web Service firma"
+            parent="base_menu"
+            sequence="20"
+            action="base_conf_firma_ws_action"
+        />
+</odoo>

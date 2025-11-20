@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.tramite.tipo
+    Tipo de Tramite
+    =================================================================
+    -->
+    <record id="tramite_tipo_search" model="ir.ui.view">
+        <field name="name">sigedat.tramite.tipo.search</field>
+        <field name="model">sigedat.tramite.tipo</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="abreviatura" />
+                <field name="tipo_cita_id" />
+                <group expand="0" string="Group By">
+                    <filter string="Tipo de cita" context="{'group_by':'tipo_cita_id'}" domain="" name="group_tipo_cita_id"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="tramite_tipo_form" model="ir.ui.view">
+        <field name="name">sigedat.tramite.tipo.form</field>
+        <field name="model">sigedat.tramite.tipo</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="name" />
+                        <field name="abreviatura" />
+                        <field name="tipo_cita_id" />
+                    </group>
+                    <notebook>
+                        <page string="Bloque Atención" >
+                            <field name="bloque_atencion_ids" context="{'tipo_tramite_id': active_id}" />
+                        </page>
+                        <page string="Revisores" >
+                            <field name="revisor_ids" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="tramite_tipo_tree">
+        <field name="name">sigedat.tramite.tipo.tree</field>
+        <field name="model">sigedat.tramite.tipo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="abreviatura" />
+                <field name="tipo_cita_id" />
+            </tree>
+        </field>
+    </record>
+</odoo>

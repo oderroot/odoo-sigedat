@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!-- Plantilla Notificacion citas del dia -->
+    <report id="report_cita_topografia"
+        string="Reporte de atencion de cita de topografia"
+        model="sigedat.cita"
+        report_type="qweb-html"
+        name="sigedat.sigedat_atencion_cita_topografia"
+        menu="True"
+        print_report_name="'Reporte %s de citas de topografia' % (object.name)"
+        />
+
+        <template id="sigedat_atencion_cita_topografia" >
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page" style="font-size:18px">
+                            <div class="row">
+                                <div class="col-md-12" align="center">
+                                    <h2>Reporte de Atencion de Citas <span t-field="o.create_date" /></h2>
+                                    <h4>Topografia</h4>
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-12" >
+                                    Fecha inicio: <span t-field="o.fecha_inicio" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-12" >
+                                    Fecha fin: <span t-field="o.fecha_fin" />
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+<!-- Plantilla Lista de chequeo sigue -->
+    <report id="report_lista_chequeo_sigue"
+        string="Reporte de lista chequeo sigue"
+        model="sigedat.tramite.solicitud"
+        report_type="qweb-html"
+        name="sigedat.sigedat_lista_chequeo_sigue"
+        menu="False"
+        print_report_name="'Reporte %s lista chequeo sigue' % (object.name)"
+    />
+
+    <template id="sigedat_lista_chequeo_sigue" >
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page" style="font-size:18px">
+                        <div class="row">
+                            <div class="col-md-12" align="center">
+                                <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td class="table-light">REVISION N°
+                                    </td>
+                                    <td ><span t-field="o.lista_item_ids[0].version_lista_chequeo"/>
+                                    </td>
+                                    <td class="table-light"> OBRA:
+                                    </td>
+                                    <td><span t-field="o.tramite_id.tipo_record"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td class="table-light">DISEÑO:
+                                    </td>
+                                    <td><span t-field="o.tramite_id.tipo_record"/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                </table>
+
+                                <table class="table table-bordered">
+                                <thead>
+                                <tr class="table-light">
+                                    <th>GENERALES
+                                    </th>
+                                    <th>SI CUMPLE
+                                    </th>
+                                    <th>NO CUMPLE
+                                    </th>
+                                    <th>NO APLICA
+                                    </th>
+                                    <th>OBSERVACIONES
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr t-foreach="o.lista_item_ids" t-as="i">
+                                    <td ><t t-esc="i.lista_chequeo_id.name"/>
+                                    </td>
+                                    <td>
+                                    <t t-if="i.cumple == 'si'">
+                                        <span>X
+                                        </span>
+                                    </t>
+                                    </td>
+                                    <td>
+                                    <t t-if="i.cumple == 'no'">
+                                        <span >X
+                                        </span>
+                                    </t>
+                                    </td>
+                                    <td>
+                                    <t t-if="i.cumple == 'na'">
+                                        <span >X
+                                        </span>
+                                    </t>
+                                    </td>
+                                    <td><span t-if="i.observacion_ids"> <t t-esc="i.observacion_ids[0].observacion"/> </span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Wizard View
+    =================================================================
+    -->
+    <record model="ir.ui.view" id="sigedat_wizard_asignar_revisor">
+        <field name="name">Asignar Revisor</field>
+        <field name="model">sigedat.wizard.asignar_revisor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Asignar Revisor"/>
+                    <div class="card">
+                        <div class="card-body">
+                            Sólo el administrador puede asignar un revisor a una solicitud de trámite.
+                        </div>
+                    </div>
+                    <group>
+                        <field name="revisor_id"/>
+                    </group>
+                    <footer>
+                        <button string="Asignar Revisor"
+                            name="asignar_revisor"
+                            type="object"
+                            class="btn-primary"
+                        />
+                        <button string="Cancelar"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sigedat_wizard_asignar_revisor_action">
+        <field name="name">Asignar Revisor</field>
+        <field name="res_model">sigedat.wizard.asignar_revisor</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

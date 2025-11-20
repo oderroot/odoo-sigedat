@@ -1,0 +1,345 @@
+nombre,seccion_id,tipo_tramite_id,aplica_a_especial,activo
+Puntos de Amarre Verificados por la EAAB,Inicial,Revisión Topografía,No,1
+Se encuentra Aprobado por la Interventoría y/o Apoyo Técnico,Inicial,Revisión Topografía,No,1
+Copia del Contrato o Documento Legal,Inicial,Revisión Topografía,No,1
+Estructura de Carpetas (NS-030):,Inicial,Revisión Topografía,No,1
+"Cálculos, ajuste de poligonales",Planimetría,Revisión Topografía,No,1
+Archivos Nativos de la Estacion Total,Planimetría,Revisión Topografía,No,1
+Cierre lineal iagual o mayor a 1:40000,Planimetría,Revisión Topografía,No,1
+Medidas de longitud y angulares son tomadas con equipos electrónicos (NS-030),Planimetría,Revisión Topografía,No,1
+"Cálculos, ajuste de nivelación",Altimetría,Revisión Topografía,No,1
+Levantamiento efectuado a partir de vértices con cota  geométricamente certificados por el IGAC.,Altimetría,Revisión Topografía,No,1
+El circuito de nivelación fue contranivelado.,Altimetría,Revisión Topografía,No,1
+Archivos Nativos Nivel Electrónico,Altimetría,Revisión Topografía,No,1
+Cierres igual o menor a 1mm por kilometro nivelado,Altimetría,Revisión Topografía,No,1
+Puntos de apoyo expedidas por el IGAC  (extensión *.pdf)  (NS-030),Altimetría,Revisión Topografía,No,1
+Validación del vertice Geodesico del Acueducto,Altimetría,Revisión Topografía,No,1
+"Cálculos, ajuste de procesamiento diferencial GPS",GNS/GPS,Revisión Topografía,No,1
+Formatos Descripciones puntos GPS o BM,GNS/GPS,Revisión Topografía,No,1
+"Archivos binarios y RINEX de los GPS, incluyendo las bases de referencia",GNS/GPS,Revisión Topografía,No,1
+Tiempo de rastreo con equipo de doble frecuencia,GNS/GPS,Revisión Topografía,No,1
+Distancia entre el punto y las bases,GNS/GPS,Revisión Topografía,No,1
+Resultado del postproceso,GNS/GPS,Revisión Topografía,No,1
+Elaboracion de Perfiles longitudinales,Batimetría,Revisión Topografía,No,1
+Elaboracion de secciones trasversales,Batimetría,Revisión Topografía,No,1
+Empleo la separcion para drenajes,Batimetría,Revisión Topografía,No,1
+Empleo la separcion para Cuerpos de Agua,Batimetría,Revisión Topografía,No,1
+Plan de vuelo (Diseñado – Ejecutado),"Fotografía Aérea
+ (Fotogrametría)",Revisión Topografía,No,1
+"Cálculos, Coordenadas y descripciones de los puntos de control terrestre.","Fotografía Aérea
+ (Fotogrametría)",Revisión Topografía,No,1
+"Archivos y reporte de la Aerotriangulación (prj, blk, etc.)","Fotografía Aérea
+ (Fotogrametría)",Revisión Topografía,No,1
+"Foto centros ajustados en formato txt (Este, Norte, Phi, Kappa, Omega).","Fotografía Aérea
+ (Fotogrametría)",Revisión Topografía,No,1
+Aerofotografías en formato tif y ecw,"Fotografía Aérea
+ (Fotogrametría)",Revisión Topografía,No,1
+Restitución Fotogramétrica en 3 dimensiones (XYZ) en formato CAD,"Fotografía Aérea
+ (Fotogrametría)",Revisión Topografía,No,1
+"Cartografía o topografía en formato CAD, pdf y GDB.","Fotografía Aérea
+ (Fotogrametría)",Revisión Topografía,No,1
+Cálculo y resultado del RMSE en cada una de las etapas del proyecto,"Fotografía Aérea
+ (Fotogrametría)",Revisión Topografía,No,1
+Plan de vuelo (Diseñado – Ejecutado),"Levantamientos 
+con Vuelos RPAS ",Revisión Topografía,No,1
+"Cálculos, Coordenadas y descripciones de los puntos de control terrestre.","Levantamientos 
+con Vuelos RPAS ",Revisión Topografía,No,1
+Archivos y reporte del ajuste o georreferenciación.,"Levantamientos 
+con Vuelos RPAS ",Revisión Topografía,No,1
+"Foto centros ajustados en formato txt (Este, Norte, Phi, Kappa, Omega).","Levantamientos 
+con Vuelos RPAS ",Revisión Topografía,No,1
+Aerofotografías en formato jpg ó tiff ó ecw,"Levantamientos 
+con Vuelos RPAS ",Revisión Topografía,No,1
+Restitución Fotogramétrica o Vectorización en formato CAD,"Levantamientos 
+con Vuelos RPAS ",Revisión Topografía,No,1
+"Cartografía o topografía en formato CAD, pdf y GDB.","Levantamientos 
+con Vuelos RPAS ",Revisión Topografía,No,1
+Cálculo y resultado del RMSE en cada una de las etapas del proyecto,"Levantamientos 
+con Vuelos RPAS ",Revisión Topografía,No,1
+Datos LiDAR crudos,LiDAR Aerotransportado,Revisión Topografía,No,1
+Archivos GPS crudos del vuelo.,LiDAR Aerotransportado,Revisión Topografía,No,1
+"Descripciones, cálculos y Archivos GPS de las estaciones base",LiDAR Aerotransportado,Revisión Topografía,No,1
+Archivos de trayectoria *.SBET,LiDAR Aerotransportado,Revisión Topografía,No,1
+Ajuste y reporte del ajuste de Boresight.,LiDAR Aerotransportado,Revisión Topografía,No,1
+"Descripciones, cálculos y Archivos GPS del control terrestre",LiDAR Aerotransportado,Revisión Topografía,No,1
+Modelo Geoidal no gravimétrico,LiDAR Aerotransportado,Revisión Topografía,No,1
+Ajuste y reporte de Datos LIDAR al Modelo Geoidal no gravimétrico,LiDAR Aerotransportado,Revisión Topografía,No,1
+"Reporte RMSE de la verificación del ajuste en coordenada X, Y, Z",LiDAR Aerotransportado,Revisión Topografía,No,1
+Datos LiDAR Clasificados,LiDAR Aerotransportado,Revisión Topografía,No,1
+Curva de Nivel,LiDAR Aerotransportado,Revisión Topografía,No,1
+DTM en formato Tif y Grid LAS,LiDAR Aerotransportado,Revisión Topografía,No,1
+"Rótulo, Convenciones y vias del plano conforme a la Norma NS-030",Informe,Revisión Topografía,No,1
+"Especificaciones técnicas equipos topográficos, (Estación total, Nivel, GPS, antenas, etc)",Informe,Revisión Topografía,No,1
+Certificados de patronamiento vigentes de los equipos Topográficos,Informe,Revisión Topografía,No,1
+Informe general del levantamiento topográfico y en PDF,Informe,Revisión Topografía,No,1
+Fotocopia Licencia Profesional Vigente y Certificado de Vigencia,Informe,Revisión Topografía,No,1
+"Archivos  CAD (dxf, dwg, dgn) y PDF",Informe,Revisión Topografía,No,1
+"Formatos SIG (GDB ESRI, shapefile ó XML de ESRI ) para Cartografia",Informe,Revisión Topografía,No,1
+Parámetro de Integridad: coherencia espacial Ortofoto Vs CAD Vs SHAPE,Informe,Revisión Topografía,No,1
+Parámetro de Consistencia: Conectividad - Topologia,Informe,Revisión Topografía,No,1
+Parámetro de Completitud del archivo shape: Totalidad de atributos (columnas),Informe,Revisión Topografía,No,1
+Parámetro de Validez del archivo shape: Dominios válidos,Informe,Revisión Topografía,No,1
+Archivo Metadatos  (M.M.),Informe,Revisión Topografía,No,1
+PDF: Copia del Contrato o Documento Legal,Generales,Revisión Planos Record Diseño,No,1
+PDF: Formato de Satisfacción debidamente firmado,Generales,Revisión Planos Record Diseño,No,1
+"Estructura de Carpetas (NS-030, NS-054, NS-028, NS-(En Proceso) Proyectos Especiales)",Generales,Revisión Planos Record Diseño,No,1
+PDF:Archivo de Validación de Topografia (NS-030),Generales,Revisión Planos Record Diseño,No,1
+"FORMATOS CAD: Rótulo del plano conforme a la Norma NS-028, NS-046, NS-054, NS-185 y NS-(En Proceso) Proyectos Especiales",Generales,Revisión Planos Record Diseño,No,1
+FORMATOS CAD:  Contiene cuadro de convenciones en el plano (NS-185),Generales,Revisión Planos Record Diseño,No,1
+"FORMATOS CAD: Contiene Vías Principales, Nomenclatura Vial",Generales,Revisión Planos Record Diseño,No,1
+"FORMATOS CAD: Escalas indicadas (1:200, 1: 500, 1:1000 , 1:2000 y derivadas)  según el tamaño correspondiente al dibujo y detalles",Generales,Revisión Planos Record Diseño,No,1
+CAD: Utilizan el archivo de salida CAD *.ctb,Generales,Revisión Planos Record Diseño,No,1
+PDF: Informe de validación y complementación del estado de las redes existentes en formato PDF,Generales,Revisión Planos Record Diseño,No,1
+"PDF: Archivos Unificados en formato PDF (Autocad, Topografia, Certificados, informes y demás)",Generales,Revisión Planos Record Diseño,No,1
+Diligenciamiento del Listado de Planos,Generales,Revisión Planos Record Diseño,No,1
+Totalidad de planos presentados en CAD y PDF (tamaño 1000 mm x 700 mm) por sistema,Generales,Revisión Planos Record Diseño,No,1
+"Firmas de interventor, coordinador de la empresa y responsable de obras ejecutadas",Generales,Revisión Planos Record Diseño,No,1
+Los Archivos son entregados en Medio magnetico,Generales,Revisión Planos Record Diseño,No,1
+Diligenciamiento del Formato de Asignación de Número,Generales,Revisión Planos Record Diseño,No,1
+Medio Magnetico debidamente etiquetado (M.M.),Generales,Revisión Planos Record Diseño,No,1
+Archivo Metadatos  (M.M.),Generales,Revisión Planos Record Diseño,No,1
+Componente Técnico:,Anexo Predial,Revisión Planos Record Diseño,No,1
+Componente Jurídico:,Anexo Predial,Revisión Planos Record Diseño,No,1
+Componente Social:,Anexo Predial,Revisión Planos Record Diseño,No,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto,Anexo Predial,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Anexo Predial,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas  (NS-185),Anexo Predial,Revisión Planos Record Diseño,No,1
+"FORMATOS SIG: Parámetro de Completitud del archivo shape: Totalidad de atributos (columnas) 
+(NS-185)",Anexo Predial,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Validez del archivo shape: Dominios válidos  (NS-185),Anexo Predial,Revisión Planos Record Diseño,No,1
+PDF: Copia de las memorias de diseño (extension *.pdf) (MM) o Archivo de Modelación,Alcantarillado,Revisión Planos Record Diseño,No,1
+VoBo Geotecnico -según formato de Satisfacción,Alcantarillado,Revisión Planos Record Diseño,No,1
+PDF Y FORMATOS SIG: Anexos (NS-0185):,Alcantarillado,Revisión Planos Record Diseño,No,1
+"FORMATOS CAD: Contiene Planta y Perfiles de toda la red, con información básica",Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Líneas proyectadas en color Verde para Pluvial y Negro para Residual,Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Contiene Planos estructurales (planta y cortes)  con información básica,Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Contiene cuadro de tramos en el plano,Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Contiene cuadro de pozos en el plano,Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Contiene cuadro de sumideros en el plano,Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Contiene cuadro domiciliarias en plano,Alcantarillado,Revisión Planos Record Diseño,No,1
+"FORMATOS CAD: Contiene: cotas claves y rasantes, diámetros, longitudes, pendientes y materiales de las tuberías.(NS-185)",Alcantarillado,Revisión Planos Record Diseño,No,1
+"FORMATOS CAD: Contiene información de la red a la cual drena dos tramos aguas arriba y aguas abajo, junto con IDSIG y números de proyectos o Record  (NS-185)",Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS CAD Y SIG: Áreas de drenaje escala 1:2000 (NS-185),Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto (NS-185),Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas - Topologia (NS-185),Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Completitud: Totalidad de atributos (columnas) - (NS-185),Alcantarillado,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Validez: Dominios válidos - (NS-185),Alcantarillado,Revisión Planos Record Diseño,No,1
+Copia de las memorias de diseño en extension PDF y Archivo de Modelación,Acueducto,Revisión Planos Record Diseño,No,1
+VoBo Geotecnico -según formato de Satisfacción,Acueducto,Revisión Planos Record Diseño,No,1
+PDF Y FORMATOS SIG: Anexos (NS-0185):,Acueducto,Revisión Planos Record Diseño,No,1
+"FORMATOS CAD: Contiene Planta y Perfiles de toda la red, con información básica",Acueducto,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Líneas proyectadas en color Azul,Acueducto,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Contiene Planos estructurales (planta y cortes)  con información básica,Acueducto,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Contiene cuadro de tramos en el plano,Acueducto,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Contiene cuadro de Accesorios en el plano,Acueducto,Revisión Planos Record Diseño,No,1
+FORMATOS CAD: Contiene cuadro de acometidas en el plano,Acueducto,Revisión Planos Record Diseño,No,1
+"FORMATOS CAD: Contiene información de la red a la cual empata dos tramos aguas arriba y aguas abajo, junto con IDSIG y números de proyectos o Record (NS-185)",Acueducto,Revisión Planos Record Diseño,No,1
+"FORMATOS CAD Y SIG: Contiene diámetros, longitud, materiales y cotas acorde a lo presentado en cuadros y/o Tablas y/o Plantas y/o SIG (NS-185)",Acueducto,Revisión Planos Record Diseño,No,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto (NS-185),Acueducto,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Acueducto,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas - Topologia (NS-185),Acueducto,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Completitud: Totalidad de atributos (columnas) - (NS-185),Acueducto,Revisión Planos Record Diseño,No,1
+FORMATOS SIG: Parámetro de Validez: Dominios válidos - (NS-185),Acueducto,Revisión Planos Record Diseño,No,1
+PDF: Copia del Contrato o Documento Legal,Generales,Revisión Planos Record Obra,No,1
+PDF: Formato de Satisfacción debidamente firmado,Generales,Revisión Planos Record Obra,No,1
+"Estructura de Carpetas (NS-030, NS-054, NS-028, NS-(En Proceso) Proyectos Especiales)",Generales,Revisión Planos Record Obra,No,1
+PDF:Archivo de Validación de Topografia (NS-030),Generales,Revisión Planos Record Obra,No,1
+"FORMATOS CAD: Rótulo del plano conforme a la Norma NS-028, NS-046, NS-054, NS-185 y NS-(En Proceso) Proyectos Especiales",Generales,Revisión Planos Record Obra,No,1
+FORMATOS CAD:  Contiene cuadro de convenciones en el plano (NS-185),Generales,Revisión Planos Record Obra,No,1
+"FORMATOS CAD: Contiene Vías Principales, Nomenclatura Vial",Generales,Revisión Planos Record Obra,No,1
+"FORMATOS CAD: Escalas indicadas (1:200, 1: 500, 1:1000 , 1:2000 y derivadas)  según el tamaño correspondiente al dibujo y detalles",Generales,Revisión Planos Record Obra,No,1
+CAD: Utilizan el archivo de salida CAD *.ctb,Generales,Revisión Planos Record Obra,No,1
+PDF: Informe de validación y complementación del estado de las redes existentes en formato PDF,Generales,Revisión Planos Record Obra,No,1
+"PDF: Archivos Unificados en formato PDF (Autocad, Topografia, Certificados, informes y demás)",Generales,Revisión Planos Record Obra,No,1
+Diligenciamiento del Listado de Planos,Generales,Revisión Planos Record Obra,No,1
+Totalidad de planos presentados en CAD y PDF (tamaño 1000 mm x 700 mm) por sistema,Generales,Revisión Planos Record Obra,No,1
+"Firmas de interventor, coordinador de la empresa y responsable de obras ejecutadas",Generales,Revisión Planos Record Obra,No,1
+Los Archivos son entregados en Medio magnetico,Generales,Revisión Planos Record Obra,No,1
+Diligenciamiento del Formato de Asignación de Número,Generales,Revisión Planos Record Obra,No,1
+Medio Magnetico debidamente etiquetado (M.M.),Generales,Revisión Planos Record Obra,No,1
+Archivo Metadatos  (M.M.),Generales,Revisión Planos Record Obra,No,1
+Componente Técnico:,Anexo Predial,Revisión Planos Record Obra,No,1
+Componente Jurídico:,Anexo Predial,Revisión Planos Record Obra,No,1
+Componente Social:,Anexo Predial,Revisión Planos Record Obra,No,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto,Anexo Predial,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Anexo Predial,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas  (NS-185),Anexo Predial,Revisión Planos Record Obra,No,1
+"FORMATOS SIG: Parámetro de Completitud del archivo shape: Totalidad de atributos (columnas) 
+(NS-185)",Anexo Predial,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Validez del archivo shape: Dominios válidos  (NS-185),Anexo Predial,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Número de proyecto relacionado en la base datos SIGUE,Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Relación de título de obra con el de proyecto,Alcantarillado,Revisión Planos Record Obra,No,1
+"FORMATOS CAD: Contiene Planta de toda la red, con información básica",Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Líneas recién construidas color rojo,Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Contiene cuadro de tramos en el plano,Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Contiene cuadro de pozos en el plano,Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Contiene cuadro de sumideros en el plano,Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Contiene cuadro domiciliarias en plano,Alcantarillado,Revisión Planos Record Obra,No,1
+"FORMATOS CAD: Contiene: cotas claves y rasantes, diámetros, longitudes, pendientes y materiales de las tuberías.(NS-185)",Alcantarillado,Revisión Planos Record Obra,No,1
+"FORMATOS CAD: Contiene información de la red a la cual drena dos tramos aguas arriba y aguas abajo, junto con IDSIG y números de proyectos o Record  (NS-185)",Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS CAD Y SIG: Áreas de drenaje escala 1:2000 (NS-185),Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto (NS-185),Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas - Topologia (NS-185),Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Completitud: Totalidad de atributos (columnas) - (NS-185),Alcantarillado,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Validez: Dominios válidos - (NS-185),Alcantarillado,Revisión Planos Record Obra,No,1
+CAD: Número de proyecto relacionado en la base datos SIGUE,Acueducto,Revisión Planos Record Obra,No,1
+CAD: Contiene plano de esquinas de acueducto,Acueducto,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Líneas recién construidas color rojo,Acueducto,Revisión Planos Record Obra,No,1
+"FORMATOS CAD: Contiene Planta de toda la red, con información básica y perfil si es Red Matriz",Acueducto,Revisión Planos Record Obra,No,1
+Contiene cuadro de prueba de presión independiente en el  PDF Unificado - (NE-002),Acueducto,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Contiene cuadro de tramos en el plano,Acueducto,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Contiene cuadro de Accesorios en el plano,Acueducto,Revisión Planos Record Obra,No,1
+FORMATOS CAD: Contiene cuadro de acometidas en el plano,Acueducto,Revisión Planos Record Obra,No,1
+"FORMATOS CAD: Contiene información de la red a la cual empata dos tramos aguas arriba y aguas abajo, junto con IDSIG y números de proyectos o Record (NS-185)",Acueducto,Revisión Planos Record Obra,No,1
+"FORMATOS CAD Y SIG: Contiene diámetros, longitud, materiales y cotas acorde a lo presentado en cuadros y/o Tablas y/o Plantas y/o SIG (NS-185)",Acueducto,Revisión Planos Record Obra,No,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto (NS-185),Acueducto,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Acueducto,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas - Topologia (NS-185),Acueducto,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Completitud: Totalidad de atributos (columnas) - (NS-185),Acueducto,Revisión Planos Record Obra,No,1
+FORMATOS SIG: Parámetro de Validez: Dominios válidos - (NS-185),Acueducto,Revisión Planos Record Obra,No,1
+PDF: Copia del Contrato o Documento Legal,Generales,Revisión Planos Record Diseño,Si,1
+PDF: Formato de Satisfacción debidamente firmado,Generales,Revisión Planos Record Diseño,Si,1
+"Estructura de Carpetas (NS-030, NS-054, NS-028, NS-(En Proceso) Proyectos Especiales)",Generales,Revisión Planos Record Diseño,Si,1
+PDF:Archivo de Validación de Topografia (NS-030),Generales,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD: Rótulo del plano conforme a la Norma NS-028, NS-046, NS-054, NS-185 y NS-(En Proceso) Proyectos Especiales",Generales,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD:  Contiene cuadro de convenciones en el plano (NS-185),Generales,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD: Contiene Vías Principales, Nomenclatura Vial",Generales,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD: Escalas indicadas (1:200, 1: 500, 1:1000 , 1:2000 y derivadas)  según el tamaño correspondiente al dibujo y detalles",Generales,Revisión Planos Record Diseño,Si,1
+CAD: Utilizan el archivo de salida CAD *.ctb,Generales,Revisión Planos Record Diseño,Si,1
+PDF: Informe de validación y complementación del estado de las redes existentes en formato PDF,Generales,Revisión Planos Record Diseño,Si,1
+"PDF: Archivos Unificados en formato PDF (Autocad, Topografia, Certificados, informes y demás)",Generales,Revisión Planos Record Diseño,Si,1
+Diligenciamiento del Listado de Planos,Generales,Revisión Planos Record Diseño,Si,1
+Totalidad de planos presentados en CAD y PDF (tamaño 1000 mm x 700 mm) por sistema,Generales,Revisión Planos Record Diseño,Si,1
+"Firmas de interventor, coordinador de la empresa y responsable de obras ejecutadas",Generales,Revisión Planos Record Diseño,Si,1
+Los Archivos son entregados en Medio magnetico,Generales,Revisión Planos Record Diseño,Si,1
+Diligenciamiento del Formato de Asignación de Número,Generales,Revisión Planos Record Diseño,Si,1
+Medio Magnetico debidamente etiquetado (M.M.),Generales,Revisión Planos Record Diseño,Si,1
+Archivo Metadatos  (M.M.),Generales,Revisión Planos Record Diseño,Si,1
+Componente Técnico:,Anexo Predial,Revisión Planos Record Diseño,Si,1
+Componente Jurídico:,Anexo Predial,Revisión Planos Record Diseño,Si,1
+Componente Social:,Anexo Predial,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto,Anexo Predial,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Anexo Predial,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas  (NS-185),Anexo Predial,Revisión Planos Record Diseño,Si,1
+"FORMATOS SIG: Parámetro de Completitud del archivo shape: Totalidad de atributos (columnas) 
+(NS-185)",Anexo Predial,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Validez del archivo shape: Dominios válidos  (NS-185),Anexo Predial,Revisión Planos Record Diseño,Si,1
+PDF: Copia de las memorias de diseño (extension *.pdf) (MM) o Archivo de Modelación,Alcantarillado,Revisión Planos Record Diseño,Si,1
+VoBo Geotecnico -según formato de Satisfacción,Alcantarillado,Revisión Planos Record Diseño,Si,1
+PDF Y FORMATOS SIG: Anexos (NS-0185):,Alcantarillado,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD: Contiene Planta y Perfiles de toda la red, con información básica",Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Líneas proyectadas en color Verde para Pluvial y Negro para Residual,Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Contiene Planos estructurales (planta y cortes)  con información básica,Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Contiene cuadro de tramos en el plano,Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Contiene cuadro de pozos en el plano,Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Contiene cuadro de sumideros en el plano,Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Contiene cuadro domiciliarias en plano,Alcantarillado,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD: Contiene: cotas claves y rasantes, diámetros, longitudes, pendientes y materiales de las tuberías.(NS-185)",Alcantarillado,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD: Contiene información de la red a la cual drena dos tramos aguas arriba y aguas abajo, junto con IDSIG y números de proyectos o Record  (NS-185)",Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD Y SIG: Áreas de drenaje escala 1:2000 (NS-185),Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto (NS-185),Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas - Topologia (NS-185),Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Completitud: Totalidad de atributos (columnas) - (NS-185),Alcantarillado,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Validez: Dominios válidos - (NS-185),Alcantarillado,Revisión Planos Record Diseño,Si,1
+Copia de las memorias de diseño en extension PDF y Archivo de Modelación,Acueducto,Revisión Planos Record Diseño,Si,1
+VoBo Geotecnico -según formato de Satisfacción,Acueducto,Revisión Planos Record Diseño,Si,1
+PDF Y FORMATOS SIG: Anexos (NS-0185):,Acueducto,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD: Contiene Planta y Perfiles de toda la red, con información básica",Acueducto,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Líneas proyectadas en color Azul,Acueducto,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Contiene Planos estructurales (planta y cortes)  con información básica,Acueducto,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Contiene cuadro de tramos en el plano,Acueducto,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Contiene cuadro de Accesorios en el plano,Acueducto,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Contiene cuadro de acometidas en el plano,Acueducto,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD: Contiene información de la red a la cual empata dos tramos aguas arriba y aguas abajo, junto con IDSIG y números de proyectos o Record (NS-185)",Acueducto,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD Y SIG: Contiene diámetros, longitud, materiales y cotas acorde a lo presentado en cuadros y/o Tablas y/o Plantas y/o SIG (NS-185)",Acueducto,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto (NS-185),Acueducto,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Acueducto,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas - Topologia (NS-185),Acueducto,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Completitud: Totalidad de atributos (columnas) - (NS-185),Acueducto,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Validez: Dominios válidos - (NS-185),Acueducto,Revisión Planos Record Diseño,Si,1
+Copia de las memorias de diseño en extension PDF y/o Archivo de Modelación,Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+VoBo Geotecnico -según formato de Satisfacción,Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+PDF Y FORMATOS SIG: Anexos (NS-0185):,Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD: Contiene Planta y Perfiles de toda la red, con información básica",Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Líneas proyectadas que se diferencian de las existentes,Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD: Contiene Planos estructurales (planta y cortes)  con información básica,Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+CAD: Contiene cuadro y/o tablas que indican el diseño y/u obra,Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+CAD: Contiene optimas condiciones de nitidez de la infromacion presentada,Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+"FORMATOS CAD Y SIG: Contiene diámetros, longitud, materiales y cotas acorde a lo presentado en cuadros y/o Tablas y/o Plantas y/o SIG (NS-185)",Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto (NS-185),Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas - Topologia (NS-185),Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Completitud: Totalidad de atributos (columnas) - (NS-185),Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+FORMATOS SIG: Parámetro de Validez: Dominios válidos - (NS-185),Proyectos Especiales,Revisión Planos Record Diseño,Si,1
+PDF: Copia del Contrato o Documento Legal,Generales,Revisión Planos Record Obra,Si,1
+PDF: Formato de Satisfacción debidamente firmado,Generales,Revisión Planos Record Obra,Si,1
+"Estructura de Carpetas (NS-030, NS-054, NS-028, NS-(En Proceso) Proyectos Especiales)",Generales,Revisión Planos Record Obra,Si,1
+PDF:Archivo de Validación de Topografia (NS-030),Generales,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD: Rótulo del plano conforme a la Norma NS-028, NS-046, NS-054, NS-185 y NS-(En Proceso) Proyectos Especiales",Generales,Revisión Planos Record Obra,Si,1
+FORMATOS CAD:  Contiene cuadro de convenciones en el plano (NS-185),Generales,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD: Contiene Vías Principales, Nomenclatura Vial",Generales,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD: Escalas indicadas (1:200, 1: 500, 1:1000 , 1:2000 y derivadas)  según el tamaño correspondiente al dibujo y detalles",Generales,Revisión Planos Record Obra,Si,1
+CAD: Utilizan el archivo de salida CAD *.ctb,Generales,Revisión Planos Record Obra,Si,1
+PDF: Informe de validación y complementación del estado de las redes existentes en formato PDF,Generales,Revisión Planos Record Obra,Si,1
+"PDF: Archivos Unificados en formato PDF (Autocad, Topografia, Certificados, informes y demás)",Generales,Revisión Planos Record Obra,Si,1
+Diligenciamiento del Listado de Planos,Generales,Revisión Planos Record Obra,Si,1
+Totalidad de planos presentados en CAD y PDF (tamaño 1000 mm x 700 mm) por sistema,Generales,Revisión Planos Record Obra,Si,1
+"Firmas de interventor, coordinador de la empresa y responsable de obras ejecutadas",Generales,Revisión Planos Record Obra,Si,1
+Los Archivos son entregados en Medio magnetico,Generales,Revisión Planos Record Obra,Si,1
+Diligenciamiento del Formato de Asignación de Número,Generales,Revisión Planos Record Obra,Si,1
+Medio Magnetico debidamente etiquetado (M.M.),Generales,Revisión Planos Record Obra,Si,1
+Archivo Metadatos  (M.M.),Generales,Revisión Planos Record Obra,Si,1
+Componente Técnico:,Anexo Predial,Revisión Planos Record Obra,Si,1
+Componente Jurídico:,Anexo Predial,Revisión Planos Record Obra,Si,1
+Componente Social:,Anexo Predial,Revisión Planos Record Obra,Si,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto,Anexo Predial,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Anexo Predial,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas  (NS-185),Anexo Predial,Revisión Planos Record Obra,Si,1
+"FORMATOS SIG: Parámetro de Completitud del archivo shape: Totalidad de atributos (columnas) 
+(NS-185)",Anexo Predial,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Validez del archivo shape: Dominios válidos  (NS-185),Anexo Predial,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Número de proyecto relacionado en la base datos SIGUE,Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Relación de título de obra con el de proyecto,Alcantarillado,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD: Contiene Planta de toda la red, con información básica",Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Líneas recién construidas color rojo,Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Contiene cuadro de tramos en el plano,Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Contiene cuadro de pozos en el plano,Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Contiene cuadro de sumideros en el plano,Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Contiene cuadro domiciliarias en plano,Alcantarillado,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD: Contiene: cotas claves y rasantes, diámetros, longitudes, pendientes y materiales de las tuberías.(NS-185)",Alcantarillado,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD: Contiene información de la red a la cual drena dos tramos aguas arriba y aguas abajo, junto con IDSIG y números de proyectos o Record  (NS-185)",Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS CAD Y SIG: Áreas de drenaje escala 1:2000 (NS-185),Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto (NS-185),Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas - Topologia (NS-185),Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Completitud: Totalidad de atributos (columnas) - (NS-185),Alcantarillado,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Validez: Dominios válidos - (NS-185),Alcantarillado,Revisión Planos Record Obra,Si,1
+CAD: Número de proyecto relacionado en la base datos SIGUE,Acueducto,Revisión Planos Record Obra,Si,1
+CAD: Contiene plano de esquinas de acueducto,Acueducto,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Líneas recién construidas color rojo,Acueducto,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD: Contiene Planta de toda la red, con información básica y perfil si es Red Matriz",Acueducto,Revisión Planos Record Obra,Si,1
+Contiene cuadro de prueba de presión independiente en el  PDF Unificado - (NE-002),Acueducto,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Contiene cuadro de tramos en el plano,Acueducto,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Contiene cuadro de Accesorios en el plano,Acueducto,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Contiene cuadro de acometidas en el plano,Acueducto,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD: Contiene información de la red a la cual empata dos tramos aguas arriba y aguas abajo, junto con IDSIG y números de proyectos o Record (NS-185)",Acueducto,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD Y SIG: Contiene diámetros, longitud, materiales y cotas acorde a lo presentado en cuadros y/o Tablas y/o Plantas y/o SIG (NS-185)",Acueducto,Revisión Planos Record Obra,Si,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto (NS-185),Acueducto,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Acueducto,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas - Topologia (NS-185),Acueducto,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Completitud: Totalidad de atributos (columnas) - (NS-185),Acueducto,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Validez: Dominios válidos - (NS-185),Acueducto,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Número de proyecto relacionado en la base datos SIGUE,Proyectos Especiales,Revisión Planos Record Obra,Si,1
+FORMATOS CAD: Líneas recién construidas que se diferencian de las existentes,Proyectos Especiales,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD: Contiene Planta y Perfiles de toda la red, con información básica",Proyectos Especiales,Revisión Planos Record Obra,Si,1
+CAD: Contiene cuadro y/o tablas que indican el diseño y/u obra,Proyectos Especiales,Revisión Planos Record Obra,Si,1
+CAD: Contiene optimas condiciones de nitidez de la infromacion presentada,Proyectos Especiales,Revisión Planos Record Obra,Si,1
+"FORMATOS CAD Y SIG: Contiene diámetros, longitud, materiales y cotas acorde a lo presentado en cuadros y/o Tablas y/o Plantas y/o SIG (NS-185)",Proyectos Especiales,Revisión Planos Record Obra,Si,1
+FORMATOS CAD Y SIG: Parámetro de Integridad: coherencia espacial de estos dos con la Ortofoto (NS-185),Proyectos Especiales,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Exactitud temática: coherencia entre las características del elemento y lo que representa.  (NS-185),Proyectos Especiales,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Consistencia: Conectividad Nodos y Líneas - Topologia (NS-185),Proyectos Especiales,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Completitud: Totalidad de atributos (columnas) - (NS-185),Proyectos Especiales,Revisión Planos Record Obra,Si,1
+FORMATOS SIG: Parámetro de Validez: Dominios válidos - (NS-185),Proyectos Especiales,Revisión Planos Record Obra,Si,1

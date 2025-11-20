@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Wizard View
+    =================================================================
+    -->
+    <record model="ir.ui.view" id="sigedat_wizard_agregar_persona">
+        <field name="name">Agregar Persona</field>
+        <field name="model">sigedat.wizard.agregar_persona</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Agregar Persona"/>
+                    <div class="card" attrs="{'invisible': [('correo_electronico','=', False)], }">
+                        <div class="card-body">
+                        <p>
+                            <field name="mensaje" readonly="1"/>
+                        </p>
+                        </div>
+                    </div>
+                    <group>
+                        <field name="tramite_id"/>
+                        <field name="grupo_id"/>
+                        <field name="correo_electronico"/>
+                        <field name="persona_id" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button string="Agregar"
+                            name="agregar_persona"
+                            type="object"
+                            class="btn-primary"
+                        />
+                        <button string="Cancelar" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sigedat_wizard_agregar_persona_action">
+        <field name="name">Agregar Persona</field>
+        <field name="res_model">sigedat.wizard.agregar_persona</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

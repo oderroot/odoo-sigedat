@@ -1,0 +1,10 @@
+.titulo {
+    border-top: 2px solid #000000; 
+    border-bottom: 2px solid #000000; 
+    border-left: 2px solid #000000; 
+    border-right: 1px solid #000000;
+    background-color:#a51010;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 12px;
+}

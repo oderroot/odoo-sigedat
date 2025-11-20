@@ -1,0 +1,24 @@
+id,active,name,group_id/id,model_id/id,perm_create,perm_read,perm_write,perm_unlink
+
+base.wizard_descargar_archivo_global,True,Wizard descargar archivo,,base_conf.model_base_conf_wizard_descargar_archivo,1,1,1,1
+
+base.consultar_barrio_global,True,Consultar Barrio,,base_conf.model_base_barrio,0,1,0,0
+base.barrios,True,Editar Barrios,sigedat.administrador,base_conf.model_base_barrio,1,1,1,1
+
+base.consultar_localidad_global,True,Cosultar Localidad,,base_conf.model_base_localidad,0,1,0,0
+base.localidades,True,Editar Localidades,sigedat.administrador,base_conf.model_base_localidad,1,1,1,1
+
+base.consultar_upz_global,True,Consultar UPZ,,base_conf.model_base_localidad_upz,0,1,0,0
+base.upz,True,Editar UPZ,sigedat.administrador,base_conf.model_base_localidad_upz,1,1,1,1
+
+base.continente global,True,Continente lectura global,,base_conf.model_base_continente,0,1,0,0
+base.continente,True,Editar continente,sigedat.administrador,base_conf.model_base_continente,1,1,1,1
+
+base.departamento global,True,Departamento lectura global,,base_conf.model_base_departamento,0,1,0,0
+base.departamento,True,Editar Departamento,sigedat.administrador,base_conf.model_base_departamento,1,1,1,1
+
+base.municipio global,True,Municipio lectura global,,base_conf.model_base_municipio,0,1,0,0
+base.municipio,True,Editar Municipio,sigedat.administrador,base_conf.model_base_municipio,1,1,1,1
+
+base.pais global,True,Pais lectura global,,base_conf.model_base_pais,0,1,0,0
+base.pais,True,Editar Pais,sigedat.administrador,base_conf.model_base_pais,1,1,1,1

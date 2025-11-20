@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.lista_chequeo.seccion
+    Revisor
+    =================================================================
+    -->
+    <record id="lista_chequeo_seccion_search" model="ir.ui.view">
+        <field name="name">sigedat.lista_chequeo.seccion.search</field>
+        <field name="model">sigedat.lista_chequeo.seccion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="abreviatura" />
+                <field name="activo" />
+                <separator string="Activo"/>
+                <filter name="filtro_activo_si"
+                    string="Esta activo"
+                    help="Filtrar esta activo"
+                    domain="[('activo', '=', True)]"
+                />
+                <filter name="filtro_activo_no"
+                    string="No esta activo"
+                    help="Filtrar no esta activo"
+                    domain="[('activo', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="lista_chequeo_seccion_form" model="ir.ui.view">
+        <field name="name">sigedat.lista_chequeo.seccion.form</field>
+        <field name="model">sigedat.lista_chequeo.seccion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="name" />
+                        <field name="abreviatura" />
+                        <field name="activo" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lista_chequeo_seccion_tree">
+        <field name="name">sigedat.lista_chequeo.seccion.tree</field>
+        <field name="model">sigedat.lista_chequeo.seccion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="abreviatura" />
+                <field name="activo" />
+            </tree>
+        </field>
+    </record>
+</odoo>

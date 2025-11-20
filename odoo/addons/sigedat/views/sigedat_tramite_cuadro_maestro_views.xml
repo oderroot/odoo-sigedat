@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.tramite.cuadro_maestro
+    Solicitud de Tramite
+    =================================================================
+    -->
+    <record id="tramite_cuadro_maestro_search" model="ir.ui.view">
+        <field name="name">sigedat.tramite.cuadro_maestro.search</field>
+        <field name="model">sigedat.tramite.cuadro_maestro</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="contrato_id" />
+                <field name="aviso_sap" />
+                <field name="numero_lista_chequeo_topografia" />
+                <field name="numero_lista_chequeo_sigue" />
+                <field name="empresa_contratista" />
+                <field name="nombre_empresa_interventor" />
+                <field name="nombre_interventor" />
+                <field name="supervisor" />
+                <field name="frente_id" />
+                <field name="area_id" />
+                <field name="localidad_id" />
+                <field name="barrio_id" />
+                <field name="empresa_contratista" />
+                <field name="solicitante_id" />
+
+                <separator string="Tiene frente"/>
+                <filter name="filtro_tiene_frente_si"
+                    string="Tiene frente"
+                    help="Filtrar tiene frente"
+                    domain="[('tiene_frente', '=', 'si')]"
+                />
+                <filter name="filtro_tiene_frente_no"
+                    string="No tiene frente"
+                    help="Filtrar no tiene frente"
+                    domain="[('tiene_frente', '=', 'no')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter string="Solicitante" context="{'group_by':'solicitante_id'}" domain="" name="group_by_solicitante_id" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="tramite_cuadro_maestro_form" model="ir.ui.view">
+        <field name="name">sigedat.tramite.cuadro_maestro.form</field>
+        <field name="model">sigedat.tramite.cuadro_maestro</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group col="4" string="Información del contrato">
+                        <field name="tramite_id" invisible="0"/>
+                        <field name="contrato_id" invisible="0"/>
+                        <field name="id" string="No"/>
+                        <field name="aviso_sap" />
+                        <field name="numero_lista_chequeo_topografia" />
+                        <field name="numero_lista_chequeo_sigue" />
+                        <field name="numero_contrato" />
+                        <field name="objeto_contrato" />
+                        <field name="direccion_proyecto" />
+                        <field name="tiene_frente" />
+                        <field name="frente_id" />
+                        <field name="area_id" />
+                        <field name="localidad_id" />
+                        <field name="barrio_id" />
+                        <field name="fecha_inicio" />
+                        <field name="fecha_fin" invisible="1"/>
+                        <field name="plazo" />
+                        <field name="empresa_contratista" />
+                        <field name="telefono_contratista" />
+                        <field name="solicitante_id" />
+                        <field name="nombre_empresa_interventor" />
+                        <field name="nombre_interventor" />
+                        <field name="supervisor" />
+                        <field name="correo_electronico_contratista"/>
+                        <field name="correo_electronico_interventor" />
+                        <field name="correo_electronico_supervisor" />
+                    </group>
+                    <group col="4" string="Información topografía">
+                        <field name="principal_topografia_id" />
+                        <field name="revisor_topografia_id" />
+                        <field name="fecha_recepcion_topografia" />
+                        <field name="fecha_asignacion_nivelacion" />
+                        <field name="topografo_asignado_nivelacion_id" />
+                        <field name="fecha_entrega_verificacion_nivelacion" />
+                        <field name="numero_revisiones_topografia" />
+                        <field name="fecha_validacion_topografia" />
+                        <field name="dias_validacion_topografia" />
+                    </group>
+                    <group col="4" string="Información sigue">
+                        <field name="principal_sigue_id" />
+                        <field name="revisor_sigue_id" />
+                        <field name="norte" />
+                        <field name="este" />
+                        <field name="acueducto_3333" />
+                        <field name="alcantarillado_2000" />
+                        <field name="fecha_inicial_revision_sigue" />
+                        <field name="numero_revisiones_sigue" />
+                        <field name="fecha_validacion_sigue" />
+                        <field name="dias_entrega_sigue" />
+                        <field name="observacion" />
+                        <field name="radicado_sigue" />
+                        <field name="id_sigue" />
+                        <field name="cantidad_planos_acueducto" />
+                        <field name="cantidad_planos_alcantarillado_pluvial" />
+                        <field name="cantidad_planos_alcantarillado_sanitario" />
+                        <field name="cantidad_planos_combinado" />
+                    </group>
+                    <group col="4" string="Información entrega final">
+                        <field name="numero_obra_acueducto" />
+                        <field name="numero_obra_alcantarillado" />
+                        <field name="numero_proyecto_acueducto" />
+                        <field name="numero_proyecto_alcantarillado" />
+                        <field name="longitud_red_acueducto" />
+                        <field name="longitud_red_alcantarillado" />
+                        <field name="longitud_red_sanitario" />
+                        <field name="longitud_red_pluvial" />
+                        <field name="longitud_red_combinado" />
+                        <field name="cantidad_unidades_medio_magnetico" />
+                        <field name="fecha_orden_entrega_final" />
+                    </group>
+                    <notebook>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="tramite_cuadro_maestro_tree">
+        <field name="name">sigedat.tramite.cuadro_maestro.tree</field>
+        <field name="model">sigedat.tramite.cuadro_maestro</field>
+        <field name="arch" type="xml">
+            <tree default_order="create_date">
+                <field name="id" string="No"/>
+                <field name="aviso_sap" />
+                <field name="contrato_id" />
+                <field name="frente_id" />
+                <field name="area_id" />
+                <field name="localidad_id" />
+                <field name="barrio_id" />
+                <field name="empresa_contratista" />
+                <field name="solicitante_id" />
+                <field name="supervisor" />
+                <field name="fecha_orden_entrega_final" />
+            </tree>
+        </field>
+    </record>
+</odoo>

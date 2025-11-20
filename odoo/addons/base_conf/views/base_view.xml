@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="base_nav"
+        name="EAAB"
+        sequence="10"
+        web_icon="base,static/description/modules.png"
+        groups='base.group_system'
+    />
+    <menuitem id="base_menu"
+        name="Configuraciones"
+        parent="base_nav"
+        sequence="10"
+    />
+
+</odoo>

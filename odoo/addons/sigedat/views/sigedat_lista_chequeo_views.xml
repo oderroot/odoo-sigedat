@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.lista_chequeo
+    Lista de Chequeo
+    =================================================================
+    -->
+    <record id="lista_chequeo_search" model="ir.ui.view">
+        <field name="name">sigedat.lista_chequeo.search</field>
+        <field name="model">sigedat.lista_chequeo</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="seccion_id" />
+                <field name="tipo_tramite_id" />
+                <field name="aplica_a_especial" />
+                <field name="activo" />
+                <separator string="Aplica a especial?"/>
+                <filter name="filtro_aplica_a_especial_si"
+                    string="Aplica a especial"
+                    help="Filtrar aplica a especial"
+                    domain="[('aplica_a_especial', '=', 'si')]"
+                />
+                <filter name="filtro_aplica_a_especial_no"
+                    string="No aplica a especial"
+                    help="Filtrar no aplica a especial"
+                    domain="[('aplica_a_especial', '=', 'no')]"
+                />
+                <separator string="Permite entrega posterior?"/>
+                <filter name="filtro_permitido_entrega_posterior_si"
+                    string="Permite entrega posterior"
+                    help="Filtrar permite entrega posterior"
+                    domain="[('permitido_entrega_posterior', '=', True)]"
+                />
+                <filter name="filtro_permitido_entrega_posterior_no"
+                    string="No permite entrega posterior"
+                    help="Filtrar no permite entrega posterior"
+                    domain="[('permitido_entrega_posterior', '=', False)]"
+                />
+                <separator string="Se toma del trámite anterior?"/>
+                <filter name="filtro_se_toma_tramite_anterior_si"
+                    string="Se toma del trámite anterior"
+                    help="Filtrar se toma del trámite anterior"
+                    domain="[('se_toma_tramite_anterior', '=', True)]"
+                />
+                <filter name="filtro_se_toma_tramite_anterior_no"
+                    string="No se toma del trámite anterior"
+                    help="Filtrar no se toma del trámite anterior"
+                    domain="[('se_toma_tramite_anterior', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter string="Tipo de trámite" context="{'group_by':'tipo_tramite_id'}" domain="" name="group_tipo_tramite"/>
+                    <filter string="Esta activo" context="{'group_by':'activo'}" domain="" name="group_activo"/>
+                    <filter string="Se permite la entrega posteriormente" context="{'group_by':'permitido_entrega_posterior'}" domain="" name="group_permitido_entrega_posterior"/>
+                    <filter string="Aplica a especial" context="{'group_by':'aplica_a_especial'}" domain="" name="group_aplica_a_especial"/>
+                    <filter string="Sección" context="{'group_by':'seccion_id'}" domain="" name="group_seccion_id"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="lista_chequeo_form" model="ir.ui.view">
+        <field name="name">sigedat.lista_chequeo.form</field>
+        <field name="model">sigedat.lista_chequeo</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="name" />
+                        <field name="seccion_id" />
+                        <field name="tipo_tramite_id" />
+                        <field name="aplica_a_especial" />
+                        <field name="activo" />
+                        <field name="permitido_entrega_posterior" />
+                        <field name="se_toma_tramite_anterior" />
+                    </group>
+                    <notebook>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lista_chequeo_tree">
+        <field name="name">sigedat.lista_chequeo.tree</field>
+        <field name="model">sigedat.lista_chequeo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="seccion_id" />
+                <field name="tipo_tramite_id" />
+                <field name="aplica_a_especial" />
+                <field name="activo" />
+            </tree>
+        </field>
+    </record>
+</odoo>

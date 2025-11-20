@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Wizard View
+    =================================================================
+    -->
+    <record model="ir.ui.view" id="sigedat_wizard_crear_soporte">
+        <field name="name">Crear Soporte</field>
+        <field name="model">sigedat.wizard.crear_soporte</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Crear Soporte"/>
+                    <div class="card">
+                        <div class="card-body">
+                            Seleccione una imagen de soporte para la observación.
+                        </div>
+                    </div>
+                    <group>
+                        <field name="archivo" widget="image" />
+                    </group>
+                    <footer>
+                        <button string="Crear Soporte"
+                            name="crear_soporte"
+                            type="object"
+                            class="btn-primary"
+                        />
+                        <button string="Cancelar"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sigedat_wizard_crear_soporte_action">
+        <field name="name">Crear Soporte</field>
+        <field name="res_model">sigedat.wizard.crear_soporte</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

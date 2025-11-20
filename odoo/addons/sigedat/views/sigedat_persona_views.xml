@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.persona
+    Persona
+    =================================================================
+    -->
+    <record id="persona_search" model="ir.ui.view">
+        <field name="name">sigedat.persona.search</field>
+        <field name="model">sigedat.persona</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="tipo_persona" />
+                <field name="nombre" />
+                <field name="apellido" />
+                <field name="tipo_identificacion_id" />
+                <field name="numero_identificacion" />
+                <field name="telefono_fijo" />
+                <field name="telefono_movil" />
+                <field name="direccion" />
+                <field name="correo_electronico" />
+                <field name="habeas_data" />
+                <separator string="Tipo de persona"/>
+                <filter name="filtro_tipo_natural"
+                    string="Natural"
+                    help="Filtrar por persona natural"
+                    domain="[('tipo_persona', '=', 'natural')]"
+                />
+                <filter name="filtro_tipo_juridica"
+                    string="Juridica"
+                    help="Filtrar por persona juridica"
+                    domain="[('tipo_persona', '=', 'juridica')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter string="Tipo de persona" context="{'group_by':'tipo_persona'}" domain="" name="group_tipo_persona"/>
+                    <filter string="Tipo de identificación" context="{'group_by':'tipo_identificacion_id'}" domain="" name="group_tipo_identificacion_id"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="persona_form" model="ir.ui.view">
+        <field name="name">sigedat.persona.form</field>
+        <field name="model">sigedat.persona</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="name" invisible="1"/>
+                        <field name="tipo_persona" attrs="{
+                            'readonly': [('es_administrador','!=',False)]}" required="1"/>
+                        <field name="nombre" attrs="{
+                            'readonly': [('es_administrador','!=',False)]}" required="1"/>
+                        <field name="apellido" attrs="{
+                            'invisible': [('tipo_persona','=','juridica')], 'required': [('tipo_persona','=','natural')], 'readonly': [('es_administrador','!=',False)]
+                            }"/>
+                        <field name="tipo_identificacion_id" attrs="{
+                            'readonly': [('es_administrador','!=',False)]}" required="1"/>
+                        <field name="numero_identificacion" attrs="{
+                            'readonly': [('es_administrador','!=',False)]}" required="1"/>
+                        <field name="telefono_fijo" />
+                        <field name="telefono_movil" required="1"/>
+                        <field name="direccion" required="1"/>
+                        <field name="correo_notificacion" />
+                        <field name="correo_electronico" attrs="{
+                            'readonly': [('es_administrador','!=',False)]}" required="1"/>
+                        <field name="habeas_data" attrs="{
+                            'readonly': [('es_administrador','!=',False)]}"/>
+                        <field name="terminos_condiciones" attrs="{
+                            'readonly': [('es_administrador','!=',False)]}"/>
+                        <field name="usuario_id" attrs="{
+                            'readonly': [('es_administrador','!=',False)]}"/>
+                        <field name="es_administrador" invisible="0"/>
+                    </group>
+                    <notebook>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="persona_tree">
+        <field name="name">sigedat.persona.tree</field>
+        <field name="model">sigedat.persona</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="tipo_persona" />
+                <field name="name" />
+                <field name="tipo_identificacion_id" />
+                <field name="numero_identificacion" />
+                <field name="telefono_fijo" />
+                <field name="telefono_movil" />
+                <field name="correo_electronico" />
+                <field name="habeas_data" />
+            </tree>
+        </field>
+    </record>
+</odoo>

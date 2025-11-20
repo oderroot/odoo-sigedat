@@ -1,0 +1,11 @@
+id,active,name,group_id/id,model_id/id,perm_create,perm_read,perm_write,perm_unlink
+,,,,,,,,
+base.wizard_descargar_archivo_global,True,Wizard descargar archivo,,base_conf.model_base_conf_wizard_descargar_archivo,1,1,1,1
+,,,,,,,,
+base.wizard_registrar_mensaje_global,True,Wizard registrar mensaje,,base_conf.model_base_conf_wizard_registrar_mensaje,1,1,1,1
+,,,,,,,,
+base.consultar_barrio_global,True,Consultar Barrio,,base_conf.model_base_barrio,0,1,0,0
+base.barrios,True,Editar Barrios,base.group_system,base_conf.model_base_barrio,1,1,1,1
+,,,,,,,,
+base.consultar_localidad_global,True,Cosultar Localidad,,base_conf.model_base_localidad,0,1,0,0
+base.localidades,True,Editar Localidades,base.group_system,base_conf.model_base_localidad,1,1,1,1

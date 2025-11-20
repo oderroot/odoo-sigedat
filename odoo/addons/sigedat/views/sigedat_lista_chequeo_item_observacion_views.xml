@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.lista_chequeo.item.observacion
+    Observacion del Item
+    =================================================================
+    -->
+    <record id="lista_chequeo_item_observacion_search" model="ir.ui.view">
+        <field name="name">sigedat.lista_chequeo.item.observacion.search</field>
+        <field name="model">sigedat.lista_chequeo.item.observacion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="observacion" />
+                <field name="item_id" />
+                <group expand="0" string="Group By">
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="lista_chequeo_item_observacion_form" model="ir.ui.view">
+        <field name="name">sigedat.lista_chequeo.item.observacion.form</field>
+        <field name="model">sigedat.lista_chequeo.item.observacion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="id" invisible="1"/>
+                        <field name="observacion" attrs="{'required': [('cumple','=', 'no')]}"/>
+                        <field name="item_id" invisible="1"/>
+                        <field name="cumple" invisible="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Soporte" >
+                            <group>
+                                <field name="archivo" filename="archivo_nombre" widget="image"/>
+                                <field name="archivo_nombre" invisible="1"/>
+                            </group>
+                        </page>
+                        <page string="Observaciones relacionadas" >
+                            <group>
+                                <button name="%(sigedat_wizard_observacion_relacionada_action)d" type="action"
+                                        string="Relacionar observaciones" class="oe_highlight" context="{'default_item_observacion_id': id}"/>
+                            </group>
+                            <separator string="Observaciones relacionadas" />
+                            <group>
+                                <field name="observacion_ids" readonly="1" options="{'no_create': True}" nolabel="1" >
+                                    <tree create="false" delete="true">
+                                        <field name="observacion"  />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="lista_chequeo_item_observacion_tree">
+        <field name="name">sigedat.lista_chequeo.item.observacion.tree</field>
+        <field name="model">sigedat.lista_chequeo.item.observacion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="observacion" />
+            </tree>
+        </field>
+    </record>
+</odoo>

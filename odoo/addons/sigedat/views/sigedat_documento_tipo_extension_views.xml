@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.documento.tipo.extension
+    Extension del Tipo de Documento
+    =================================================================
+    -->
+    <record id="documento_tipo_extension_search" model="ir.ui.view">
+        <field name="name">sigedat.documento.tipo.extension.search</field>
+        <field name="model">sigedat.documento.tipo.extension</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <group expand="0" string="Group By">
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="documento_tipo_extension_form" model="ir.ui.view">
+        <field name="name">sigedat.documento.tipo.extension.form</field>
+        <field name="model">sigedat.documento.tipo.extension</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="name" />
+                    </group>
+                    <notebook>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="documento_tipo_extension_tree">
+        <field name="name">sigedat.documento.tipo.extension.tree</field>
+        <field name="model">sigedat.documento.tipo.extension</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,200 @@
+<odoo>
+    <data>
+
+        <template id="layout" name="Plantilla layout SIGEDAT">&lt;!DOCTYPE html&gt;
+            <html t-att-lang="lang and lang.replace('_', '-')"
+                t-att-data-main-object="repr(main_object) if editable else None">
+                <head>
+
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+
+                    <!-- Google captcha -->
+                    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=es"></script>
+
+                    <!-- popper.min.js below is needed if you use bootstrap 4.x -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+                    <meta charset="utf-8" />
+                    <title><t t-esc="title"/></title>
+                </head>
+                <body>
+                    <div id="wrapwrap">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                            <a class="nav-item nav-link active" href="https://www.acueducto.com.co">SIGEDAT - EAAB<span class="sr-only">(current)</span></a>
+                            </div>
+                        </div>
+                        </nav>
+                        <main>
+                            <div class="container col-sm-10">
+                                <h1 class="text-center">SIGEDAT</h1>
+                                <div class="loader" id="cargando"></div>
+                                <t t-raw="0"/>
+                            </div>
+                        </main>
+                        <footer>
+                            <div id="footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <p class="text-muted small">EMPRESA DE ACUEDUCTO Y ALCANTARILLADO DE BOGOTA<br/> Todos los derechos reservados.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+
+                    <script id='tracking_code' t-if="website and website.google_analytics_key and not editable">
+                        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                        ga('create', _.str.trim('<t t-esc="website.google_analytics_key"/>'), 'auto');
+                        ga('send','pageview');
+                    </script>
+                </body>
+            </html>
+        </template>
+
+        <template id="login" name="Plantilla login SIGEDAT">
+            <t t-call="sigedat.layout">
+              <script type="text/javascript" >
+                var usuario = "<t t-esc='usuario' />";
+                var grupo = "<t t-esc='grupo' />";
+                var base = "<t t-esc='base' />";
+                var es_usuario_antiguo = "<t t-esc='es_usuario_antiguo' />";
+              </script>
+                <t t-set="title">
+                Empresa de Acueducto y Alcantarilla de Bogotá EAAB -  SIGEDAT
+                </t>
+                <div class="container vertical-center col-sm-12">
+
+                    <div class="row">
+                        <div class="col align-self-center">
+
+                            <div class="card">
+                                <div class="card-body" id="formulario">
+
+                                    <form method="get"
+                                      enctype="multipart/form-data"
+                                      class="was-validated"
+                                      action="/web/login"
+                                    >
+
+                                        <h1 class="text-center">Formulario de Validación</h1> <br/><br/>
+
+                                        <!-- Terminos y Condiciones -->
+                                        <div class="form-group">
+                                          <div class="col-md-12 text-center">
+                                            <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1581_2012.html">
+                                              LEY ESTATUTARIA 1581 DE 2012
+                                            </a>
+                                            <p>"
+                                              Por la cual se dictan disposiciones generales para la protección de datos personales"
+                                            </p>
+                                            <div class="form-check">
+                                              <p class="form-check-label"
+                                                for="tratamiento_datos">
+                                                  Aceptar tratamiento de datos
+                                              </p>
+
+                                              <input type='hidden' name="usuario" id='usuario'/>
+                                              <input type='hidden' name="grupo" id='grupo'/>
+                                              <input type='hidden' name="base" id='base'/>
+
+                                              <input type="checkbox"
+                                                id="tratamiento_datos"
+                                                name="tratamiento_datos"
+                                                required="true"
+                                              />
+                                              <div class="invalid-feedback">
+                                                Debe aceptar antes de continuar.
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-12 text-center">
+                                            <p>Habeas data
+                                            </p>
+                                            <div class="form-check">
+                                              <p class="form-check-label"
+                                                for="habeas_data">
+                                                  Aceptar habeas data
+                                              </p>
+                                              <input type="checkbox"
+                                                id="habeas_data"
+                                                name="habeas_data"
+                                                required="true"
+                                              />
+                                              <div class="invalid-feedback">
+                                                Debe aceptar antes de continuar.
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                          <!-- Google Captcha -->
+                                        <div class="form-group">
+                                          <div class="col-md-12 text-center">
+                                            <br/>
+                                            <div class="g-recaptcha col-md-4 offset-3 mx-auto" t-att-data-sitekey="site_key">
+                                            </div>
+                                            <br/>
+                                            <input id="continuar" class="btn btn-primary btn-lg" type="submit" value="Continuar" />
+                                          </div>
+                                        </div>
+                                    </form>
+                                    <br/>
+                                </div> <!-- card body -->
+                            </div> <!-- card -->
+                        </div>
+                    </div>
+                </div> <!-- container -->
+                <script type="text/javascript" src="/static/src/js/sigedat.js"/>
+            </t>
+        </template>
+
+<!-- Plantilla usada para mostrar los mensajes que devuelve el backend -->
+        <template id="mensaje" name="Plantilla mensajes SIGEDAT">
+          <t t-call="sigedat.layout">
+            <t t-set="title"><t t-esc="titulo"/></t>
+              <div class="card">
+                <div class="card-header font-weight-bold display-4">
+                  <t t-esc="titulo"/>
+                </div>
+                <div class="card-body">
+                  <p class="card-text"><t t-esc="mensaje"/></p>
+                </div>
+              </div>
+          </t>
+        </template>
+
+        <template id="recaptcha_error" name="Plantilla recaptcha ERROR">
+            <t t-call="sigedat.layout">
+                <t t-set="title">Recaptcha ERROR</t>
+                <div class="container vertical-center">
+                    <div class="row">
+                        <div class="col align-self-center">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h1>Error con re captcha, por favor intente nuevamente</h1>
+                                </div>
+                                <button id="atras" type="button" class="btn btn-primary">Ir Atras</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <script type="text/javascript" language="javascript">
+                $('button#atras').on('click', function(e){
+                    e.preventDefault();
+                    window.history.back();
+                });
+            </script>
+
+        </template>
+
+    </data>
+</odoo>

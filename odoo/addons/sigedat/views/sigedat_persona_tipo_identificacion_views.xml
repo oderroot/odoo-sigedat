@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.persona.tipo_identificacion
+    Tipo de Identificacion
+    =================================================================
+    -->
+    <record id="persona_tipo_identificacion_search" model="ir.ui.view">
+        <field name="name">sigedat.persona.tipo_identificacion.search</field>
+        <field name="model">sigedat.persona.tipo_identificacion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="aplica_a" />
+                <separator string="Aplica a"/>
+                <filter name="filtro_aplica_a_natural"
+                    string="Natural"
+                    help="Filtrar natural"
+                    domain="[('aplica_a', '=', 'natural')]"
+                />
+                <filter name="filtro_aplica_a_juridica"
+                    string="Jurídica"
+                    help="Filtrar jurídica"
+                    domain="[('aplica_a', '=', 'juridica')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter string="Aplica a" context="{'group_by':'aplica_a'}" domain="" name="group_by_aplica_a" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="persona_tipo_identificacion_form" model="ir.ui.view">
+        <field name="name">sigedat.persona.tipo_identificacion.form</field>
+        <field name="model">sigedat.persona.tipo_identificacion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="name" />
+                        <field name="aplica_a" />
+                    </group>
+                    <notebook>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="persona_tipo_identificacion_tree">
+        <field name="name">sigedat.persona.tipo_identificacion.tree</field>
+        <field name="model">sigedat.persona.tipo_identificacion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="aplica_a" />
+            </tree>
+        </field>
+    </record>
+</odoo>

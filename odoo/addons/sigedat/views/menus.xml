@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="sigedat_nav"
+        name="SIGEDAT"
+        groups="sigedat.analista"
+    />
+
+    <menuitem id="sigedat_menu"
+        name="SIGEDAT"
+        parent="sigedat_nav"
+        sequence="10"
+        groups="sigedat.analista"
+    />
+    <menuitem id="sigedat_corporativo_menu"
+        name="Modulo Corporativo"
+        parent="sigedat_nav"
+        sequence="21"
+        groups="sigedat.administrador"
+    />
+    <menuitem id="sigedat_conf_menu"
+        name="Configuración"
+        parent="sigedat_nav"
+        sequence="30"
+        groups="sigedat.administrador"
+    />
+    <menuitem id="sigedat_admin_menu"
+        name="Administración"
+        parent="sigedat_nav"
+        sequence="100"
+        groups="sigedat.administrador"
+    />
+
+    <menuitem id="sigedat_int_menu"
+        name="Interno"
+        parent="sigedat_menu"
+        groups="sigedat.usuario_interno"
+    />
+    <menuitem id="sigedat_ext_menu"
+        name="Externo"
+        parent="sigedat_menu"
+        groups="sigedat.usuario_externo"
+    />
+    <menuitem id="sigedat_ext_apoyo_menu"
+        name="Trámites"
+        parent="sigedat_menu"
+        groups="sigedat.topografia,sigedat.record"
+    />
+
+    <!-- Wizards -->
+    <menuitem id="registrar_contrato_menu"
+        parent="sigedat_ext_menu"
+        name="Registrar Acuerdo"
+        action="sigedat_wizard_crear_contrato_action"
+        groups="sigedat.principal"
+        sequence="11"
+    />
+    <menuitem id="configuracion_general_menu"
+        parent="sigedat_conf_menu"
+        name="Configuracion general"
+        action="sigedat_wizard_configuracion_general_action"
+    />
+    <!--
+    =================================================================
+    Menu sigedat.tramite
+    =================================================================
+    -->
+    <record id="tramite_action" model="ir.actions.act_window" >
+        <field name="name">Gestión de acuerdos</field>
+        <field name="res_model">sigedat.tramite</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="tramite_menu"
+        parent="sigedat_admin_menu"
+        name="Gestión de acuerdos"
+        action="tramite_action"
+    />
+    <record id="tramite_ext_action" model="ir.actions.act_window" >
+        <field name="name">Gestión de acuerdos</field>
+        <field name="res_model">sigedat.tramite</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="tramite_principal_menu"
+        parent="sigedat_ext_menu"
+        name="Gestión de acuerdos"
+        action="tramite_ext_action"
+        groups="sigedat.principal"
+        sequence="10"
+    />
+    <!-- <record id="tramite_ext2_action" model="ir.actions.act_window" >
+        <field name="name">Gestión de acuerdos</field>
+        <field name="res_model">sigedat.tramite</field>
+        <field name="domain">[('forma_parte_equipo_apoyo', '=', True)]</field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="tramite_topografia_menu"
+        parent="sigedat_ext_menu"
+        name="Gestión de acuerdos"
+        action="tramite_ext2_action"
+        groups="sigedat.topografia,sigedat.record"
+    /> -->
+
+    <!--
+    =================================================================
+    Menu sigedat.persona
+    =================================================================
+    -->
+    <record id="persona_action" model="ir.actions.act_window" >
+        <field name="name">Externo</field>
+        <field name="res_model">sigedat.persona</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="persona_menu"
+        parent="sigedat_admin_menu"
+        name="Externo"
+        action="persona_action"
+    />
+    <record model="ir.actions.act_window" id="perfil_action">
+        <field name="name">Datos personales</field>
+        <field name="res_model">sigedat.persona</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('usuario_id','=', uid)]</field>
+    </record>
+    <menuitem id="perfil_menu"
+        parent="sigedat_ext_menu"
+        name="Datos personales"
+        action="perfil_action"
+        sequence="15"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.persona.tipo_identificacion
+    =================================================================
+    -->
+    <record id="persona_tipo_identificacion_action" model="ir.actions.act_window" >
+        <field name="name">Tipo de identificación</field>
+        <field name="res_model">sigedat.persona.tipo_identificacion</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="persona_tipo_identificacion_menu"
+        parent="sigedat_conf_menu"
+        name="Tipo de identificación"
+        action="persona_tipo_identificacion_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.revisor.no_disponibilidad
+    =================================================================
+    -->
+    <record id="revisor_no_disponibilidad_action" model="ir.actions.act_window" >
+        <field name="name">No disponibilidad del revisor</field>
+        <field name="res_model">sigedat.revisor.no_disponibilidad</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="revisor_no_disponibilidad_menu"
+        parent="sigedat_conf_menu"
+        name="No disponibilidad del revisor"
+        action="revisor_no_disponibilidad_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.revisor
+    =================================================================
+    -->
+    <record id="revisor_action" model="ir.actions.act_window" >
+        <field name="name">Revisor</field>
+        <field name="res_model">sigedat.revisor</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="revisor_menu"
+        parent="sigedat_corporativo_menu"
+        name="Revisor"
+        action="revisor_action"
+    />
+    <menuitem id="revisor_admin_menu"
+        parent="sigedat_admin_menu"
+        name="Revisor"
+        action="revisor_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.documento
+    =================================================================
+    -->
+    <record id="documento_action" model="ir.actions.act_window" >
+        <field name="name">Documento</field>
+        <field name="res_model">sigedat.documento</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="documento_menu"
+        parent="sigedat_admin_menu"
+        name="Documento"
+        action="documento_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.documento.tipo.extension
+    =================================================================
+    -->
+    <record id="documento_tipo_extension_action" model="ir.actions.act_window" >
+        <field name="name">Extension del tipo de documento</field>
+        <field name="res_model">sigedat.documento.tipo.extension</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="documento_tipo_extension_menu"
+        parent="sigedat_conf_menu"
+        name="Extension del tipo de documento"
+        action="documento_tipo_extension_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.documento.tipo
+    =================================================================
+    -->
+    <record id="documento_tipo_action" model="ir.actions.act_window" >
+        <field name="name">Tipo de documento</field>
+        <field name="res_model">sigedat.documento.tipo</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="documento_tipo_menu"
+        parent="sigedat_conf_menu"
+        name="Tipo de documento"
+        action="documento_tipo_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.carpeta
+    =================================================================
+    -->
+    <record id="carpeta_action" model="ir.actions.act_window" >
+        <field name="name">Carpeta</field>
+        <field name="res_model">sigedat.carpeta</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="carpeta_menu"
+        parent="sigedat_conf_menu"
+        name="Carpeta"
+        action="carpeta_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.cita
+    =================================================================
+    -->
+    <record id="cita_action" model="ir.actions.act_window" >
+        <field name="name">Cita</field>
+        <field name="res_model">sigedat.cita</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="cita_admin_menu"
+        parent="sigedat_admin_menu"
+        name="Citas"
+        action="cita_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.cita.tipo
+    =================================================================
+    -->
+    <record id="cita_tipo_action" model="ir.actions.act_window" >
+        <field name="name">Tipo de cita</field>
+        <field name="res_model">sigedat.cita.tipo</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="cita_tipo_menu"
+        parent="sigedat_conf_menu"
+        name="Tipo de cita"
+        action="cita_tipo_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.tramite.cuadro_maestro
+    =================================================================
+    -->
+    <record id="tramite_cuadro_maestro_admin_action" model="ir.actions.act_window" >
+        <field name="name">Cuadro maestro</field>
+        <field name="res_model">sigedat.tramite.cuadro_maestro</field>
+        <field name="domain">['|', ('revisor_topografia_id.persona_id.id', '=', uid), ('revisor_sigue_id.persona_id.id', '=', uid)]</field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="tramite_cuadro_maestro_menu"
+        parent="sigedat_int_menu"
+        name="Cuadro maestro"
+        action="tramite_cuadro_maestro_admin_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.tramite.solicitud
+    =================================================================
+    -->
+    <record id="tramite_solicitud_admin_action" model="ir.actions.act_window" >
+        <field name="name">Solicitudes de trámites</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_menu"
+        parent="sigedat_admin_menu"
+        name="Solicitudes de Trámites"
+        action="tramite_solicitud_admin_action"
+    />
+    <record id="tramite_solicitud_int_action" model="ir.actions.act_window" >
+        <field name="name">Mis trámites revisor</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="domain">[('revisor_id.persona_id.id', '=', uid)]</field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_int_menu"
+        parent="sigedat_int_menu"
+        name="Mis trámites revisor"
+        action="tramite_solicitud_int_action"
+        groups="sigedat.revisor"
+        sequence="11"
+    />
+    <record id="tramite_solicitud_en_revision_int_action" model="ir.actions.act_window" >
+        <field name="name">Mis trámites por revisar</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="domain">[('state', 'in', ['pendiente_revision', 'en_revision'])]</field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_en_revision_int_menu"
+        parent="sigedat_int_menu"
+        name="Mis trámites por revisar"
+        action="tramite_solicitud_en_revision_int_action"
+        groups="sigedat.revisor"
+        sequence="10"
+    />
+    <record id="tramite_solicitud_int_lider_action" model="ir.actions.act_window" >
+        <field name="name">Para validación</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="domain">[('state', '=', 'validado')]</field>
+        <field name="context">{'edit':False}</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_int_lider_menu"
+        parent="sigedat_int_menu"
+        name="Para validación"
+        action="tramite_solicitud_int_lider_action"
+        groups="sigedat.lider_area"
+        sequence="12"
+    />
+    <record id="tramite_solicitud_ext_action" model="ir.actions.act_window" >
+        <field name="name">Mis trámites registrados</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="context">{'edit':False}</field>
+        <field name="domain">[('tramite_id.create_uid', '=', uid)]</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_ext_menu"
+        parent="sigedat_ext_menu"
+        name="Mis trámites registrados"
+        action="tramite_solicitud_ext_action"
+        groups="sigedat.principal"
+        sequence="12"
+    />
+    <record id="tramite_solicitud_ext_en_proceso_action" model="ir.actions.act_window" >
+        <field name="name">Mis trámites en proceso</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="domain">[('tramite_id.create_uid', '=', uid), ('state', 'not in', ['cancelado', 'rechazado', 'validado', 'validado_confirmado'])]</field>
+        <field name="context">{'edit':False}</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_en_proceso_ext_menu"
+        parent="sigedat_ext_menu"
+        name="Mis trámites en proceso"
+        action="tramite_solicitud_ext_en_proceso_action"
+        groups="sigedat.principal"
+        sequence="13"
+    />
+    <record id="tramite_solicitud_externo_action" model="ir.actions.act_window" >
+        <field name="name">Mis trámites externo</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="domain">['|', ('create_uid', '=', uid), ('tramite_id.persona_ids', 'in', [uid])]</field>
+        <field name="context">{'edit':False}</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_externo_menu"
+        parent="sigedat_ext_menu"
+        name="Mis trámites externo"
+        action="tramite_solicitud_externo_action"
+        groups="sigedat.usuario_externo"
+        sequence="12"
+    />
+
+    <record id="tramite_solicitud_ext_con_observaciones_action" model="ir.actions.act_window" >
+        <field name="name">Mis trámites con observaciones</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="domain">[('tramite_id.create_uid', '=', uid), ('state', '=', 'revision_con_observaciones')]</field>
+        <field name="context">{'edit':False}</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_con_observaciones_ext_menu"
+        parent="sigedat_ext_menu"
+        name="Mis trámites con observaciones"
+        action="tramite_solicitud_ext_con_observaciones_action"
+        groups="sigedat.principal"
+        sequence="13"
+    />
+    <record id="tramite_solicitud_ext_action" model="ir.actions.act_window" >
+        <field name="name">Mis trámites registrados</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="context">{'edit':False}</field>
+        <field name="domain">[('create_uid', '=', uid)]</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_ext_menu"
+        parent="sigedat_ext_apoyo_menu"
+        name="Mis trámites registrados"
+        action="tramite_solicitud_ext_action"
+        groups="sigedat.topografia,sigedat.record"
+        sequence="12"
+    />
+    <record id="tramite_solicitud_ext_en_proceso_action" model="ir.actions.act_window" >
+        <field name="name">Mis trámites en proceso</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="domain">[('create_uid', '=', uid), ('state', 'not in', ['cancelado', 'rechazado', 'validado', 'validado_confirmado'])]</field>
+        <field name="context">{'edit':False}</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_en_proceso_ext_menu"
+        parent="sigedat_ext_apoyo_menu"
+        name="Mis trámites en proceso"
+        action="tramite_solicitud_ext_en_proceso_action"
+        groups="sigedat.topografia,sigedat.record"
+        sequence="13"
+    />
+    <record id="tramite_solicitud_ext_con_observaciones_action" model="ir.actions.act_window" >
+        <field name="name">Mis trámites con observaciones</field>
+        <field name="res_model">sigedat.tramite.solicitud</field>
+        <field name="domain">[('create_uid', '=', uid), ('state', '=', 'revision_con_observaciones')]</field>
+        <field name="context">{'edit':False}</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem id="tramite_solicitud_con_observaciones_ext_menu"
+        parent="sigedat_ext_apoyo_menu"
+        name="Mis trámites con observaciones"
+        action="tramite_solicitud_ext_con_observaciones_action"
+        groups="sigedat.topografia,sigedat.record"
+        sequence="13"
+    />
+    <!--
+    =================================================================
+    Menu sigedat.tramite.tipo.bloque_atencion
+    =================================================================
+    -->
+    <record id="tramite_tipo_bloque_atencion_action" model="ir.actions.act_window" >
+        <field name="name">Bloque de atención del trámite</field>
+        <field name="res_model">sigedat.tramite.tipo.bloque_atencion</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="tramite_tipo_bloque_atencion_menu"
+        parent="sigedat_conf_menu"
+        name="Bloque de atención del trámite"
+        action="tramite_tipo_bloque_atencion_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.tramite.tipo
+    =================================================================
+    -->
+    <record id="tramite_tipo_action" model="ir.actions.act_window" >
+        <field name="name">Tipo de trámite</field>
+        <field name="res_model">sigedat.tramite.tipo</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="tramite_tipo_menu"
+        parent="sigedat_conf_menu"
+        name="Tipo de trámite"
+        action="tramite_tipo_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.frente
+    =================================================================
+    -->
+    <record id="frente_action" model="ir.actions.act_window" >
+        <field name="name">Frente</field>
+        <field name="res_model">sigedat.frente</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="frente_menu"
+        parent="sigedat_admin_menu"
+        name="Frente"
+        action="frente_action"
+    />
+
+
+    <!--
+    =================================================================
+    Menu sigedat.contrato.tipo
+    =================================================================
+    -->
+    <record id="contrato_tipo_action" model="ir.actions.act_window" >
+        <field name="name">Tipo de acuerdo</field>
+        <field name="res_model">sigedat.contrato.tipo</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="contrato_tipo_menu"
+        parent="sigedat_conf_menu"
+        name="Tipo de acuerdo"
+        action="contrato_tipo_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.contrato
+    =================================================================
+    -->
+    <record id="contrato_action" model="ir.actions.act_window" >
+        <field name="name">Acuerdo</field>
+        <field name="res_model">sigedat.contrato</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="contrato_admin_menu"
+        parent="sigedat_corporativo_menu"
+        name="Acuerdo"
+        action="contrato_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.area
+    =================================================================
+    -->
+    <record id="area_action" model="ir.actions.act_window" >
+        <field name="name">Área</field>
+        <field name="res_model">sigedat.area</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="area_menu"
+        parent="sigedat_conf_menu"
+        name="Área"
+        action="area_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.lista_chequeo
+    =================================================================
+    -->
+    <record id="lista_chequeo_action" model="ir.actions.act_window" >
+        <field name="name">Lista de chequeo</field>
+        <field name="res_model">sigedat.lista_chequeo</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="lista_chequeo_menu"
+        parent="sigedat_conf_menu"
+        name="Lista de chequeo"
+        action="lista_chequeo_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.lista_chequeo_seccion
+    =================================================================
+    -->
+    <record id="lista_chequeo_seccion_action" model="ir.actions.act_window" >
+        <field name="name">Sección de lista de chequeo</field>
+        <field name="res_model">sigedat.lista_chequeo.seccion</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="lista_chequeo_seccion_menu"
+        parent="sigedat_conf_menu"
+        name="Sección de lista de chequeo"
+        action="lista_chequeo_seccion_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.lista_chequeo.item
+    =================================================================
+    -->
+    <record id="lista_chequeo_item_action" model="ir.actions.act_window" >
+        <field name="name">Item de la lista de chequeo</field>
+        <field name="res_model">sigedat.lista_chequeo.item</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="lista_chequeo_item_menu"
+        parent="sigedat_admin_menu"
+        name="Item de la lista de chequeo"
+        action="lista_chequeo_item_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.lista_chequeo.item.observacion
+    =================================================================
+    -->
+    <record id="lista_chequeo_item_observacion_action" model="ir.actions.act_window" >
+        <field name="name">Observación del item</field>
+        <field name="res_model">sigedat.lista_chequeo.item.observacion</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="lista_chequeo_item_observacion_menu"
+        parent="sigedat_admin_menu"
+        name="Observación del item"
+        action="lista_chequeo_item_observacion_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.lista_chequeo.item.observacion.soporte
+    =================================================================
+    -->
+    <record id="lista_chequeo_item_observacion_soporte_action" model="ir.actions.act_window" >
+        <field name="name">Soporte de la observación</field>
+        <field name="res_model">sigedat.lista_chequeo.item.observacion.soporte</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="lista_chequeo_item_observacion_soporte_menu"
+        parent="sigedat_admin_menu"
+        name="Soporte de la observación"
+        action="lista_chequeo_item_observacion_soporte_action"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.equipo_apoyo
+    =================================================================
+    -->
+    <record id="equipo_apoyo_action" model="ir.actions.act_window" >
+        <field name="name">Equipo de apoyo</field>
+        <field name="res_model">sigedat.equipo_apoyo</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="equipo_apoyo_menu"
+        parent="sigedat_admin_menu"
+        name="Equipo de apoyo"
+        action="equipo_apoyo_action"
+    />
+    <record id="equipo_apoyo_ext_action" model="ir.actions.act_window" >
+        <field name="name">Mi equipo de apoyo</field>
+        <field name="res_model">sigedat.equipo_apoyo</field>
+        <field name="domain">[('create_uid','=', uid)]</field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="equipo_apoyo_ext_menu"
+        parent="sigedat_ext_menu"
+        name="Mi equipo de apoyo"
+        action="equipo_apoyo_ext_action"
+        groups='sigedat.principal'
+        sequence="14"
+    />
+
+    <!--
+    =================================================================
+    Menu sigedat.grupo
+    =================================================================
+    -->
+    <record id="grupo_action" model="ir.actions.act_window" >
+        <field name="name">Grupo</field>
+        <field name="res_model">sigedat.grupo</field>
+        <field name="domain"></field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="grupo_menu"
+        parent="sigedat_conf_menu"
+        name="Grupo"
+        action="grupo_action"
+    />
+
+    <!-- Menu Visor -->
+    <record id="website_visor_action" model="ir.actions.act_url">
+        <field name="name">Visor Geográfico</field>
+        <field name="target">new</field>
+        <field name="url" eval="'/sigedat/visor'"/>
+    </record>
+    <menuitem id="website_visor_menu"
+        parent="sigedat_admin_menu"
+        sequence="100"
+        name="Visor Geográfico"
+        action="website_visor_action"
+    />
+</odoo>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.carpeta
+    Carpeta
+    =================================================================
+    -->
+    <record id="carpeta_search" model="ir.ui.view">
+        <field name="name">sigedat.carpeta.search</field>
+        <field name="model">sigedat.carpeta</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="carpeta_padre_id" attrs="{'invisible': [('carpeta_padre_id','=',False)]}"/>
+                <field name="tipo_tramite_id" />
+                <field name="activo" />
+                <field name="tipo_documento_ids" />
+                <field name="aplica_a_especial" />
+                <group expand="0" string="Group By">
+                    <filter string="Tipo de tramite" context="{'group_by':'tipo_tramite_id'}" domain="" name="group_tipo_tramite"/>
+                    <filter string="Esta activo" context="{'group_by':'activo'}" domain="" name="group_activo"/>
+                    <filter string="Aplica a especial" context="{'group_by':'aplica_a_especial'}" domain="" name="group_aplica_a_especial"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="carpeta_form" model="ir.ui.view">
+        <field name="name">sigedat.carpeta.form</field>
+        <field name="model">sigedat.carpeta</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="name" />
+                        <field name="carpeta_padre_id" />
+                        <field name="tipo_tramite_id" />
+                        <field name="aplica_a_especial" />
+                        <field name="activo" />
+                    </group>
+                    <notebook>
+                        <page string="Tipos de Documentos">
+                            <field name="tipo_documento_ids" nolabel="1">
+                                <tree>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name" />
+                                    <field name="cantidad" />
+                                    <field name="activo" />
+                                    <field name="obligatorio" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="carpeta_tree">
+        <field name="name">sigedat.carpeta.tree</field>
+        <field name="model">sigedat.carpeta</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name" />
+                <field name="carpeta_padre_id" />
+                <field name="tipo_tramite_id" />
+                <field name="aplica_a_especial" />
+                <field name="activo" />
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.tramite.tipo.bloque_atencion
+    Bloque de Atención del Tramite
+    =================================================================
+    -->
+    <record id="tramite_tipo_bloque_atencion_search" model="ir.ui.view">
+        <field name="name">sigedat.tramite.tipo.bloque_atencion.search</field>
+        <field name="model">sigedat.tramite.tipo.bloque_atencion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="hora_inicio" widget="float_time"/>
+                <field name="hora_fin" widget="float_time"/>
+                <field name="lunes" />
+                <field name="martes" />
+                <field name="miercoles" />
+                <field name="jueves" />
+                <field name="viernes" />
+                <field name="sabado" />
+                <field name="domingo" />
+                <field name="tipo_tramite_id" />
+                <group expand="0" string="Group By">
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="tramite_tipo_bloque_atencion_form" model="ir.ui.view">
+        <field name="name">sigedat.tramite.tipo.bloque_atencion.form</field>
+        <field name="model">sigedat.tramite.tipo.bloque_atencion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="tipo_tramite_id" />
+                        <field name="hora_inicio" widget="float_time"/>
+                        <field name="hora_fin" widget="float_time"/>
+                    </group>
+                    <notebook>
+                        <page string="Dias Atencion" >
+                            <group col="2">
+                                <field name="lunes" />
+                                <field name="martes" />
+                                <field name="miercoles" />
+                                <field name="jueves" />
+                                <field name="viernes" />
+                                <field name="sabado" />
+                                <field name="domingo" />
+                            </group>
+                        </page>
+                        <page string="Revisores" >
+                            <field name="revisor_ids" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="tramite_tipo_bloque_atencion_tree">
+        <field name="name">sigedat.tramite.tipo.bloque_atencion.tree</field>
+        <field name="model">sigedat.tramite.tipo.bloque_atencion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="tipo_tramite_id" />
+                <field name="hora_inicio" widget="float_time"/>
+                <field name="hora_fin" widget="float_time"/>
+                <field name="lunes" />
+                <field name="martes" />
+                <field name="miercoles" />
+                <field name="jueves" />
+                <field name="viernes" />
+                <field name="sabado" />
+                <field name="domingo" />
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Wizard View
+    =================================================================
+    -->
+    <record model="ir.ui.view" id="sigedat_wizard_observacion_relacionada">
+        <field name="name">Observación relacionada</field>
+        <field name="model">sigedat.wizard.observacion_relacionada</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Observación relacionada"/>
+                    <div class="card">
+                        <div class="card-body">
+                            Seleccione una o varias observaciones relacionadas.
+                        </div>
+                    </div>
+                    <group>
+                        <field name="observacion_ids" />
+                    </group>
+                    <footer>
+                        <button string="Relacionar Observaciones"
+                            name="observacion_relacionada"
+                            type="object"
+                            class="btn-primary"
+                            groups="sigedat.revisor"
+                        />
+                        <button string="Cancelar"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sigedat_wizard_observacion_relacionada_action">
+        <field name="name">Observación relacionada</field>
+        <field name="res_model">sigedat.wizard.observacion_relacionada</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

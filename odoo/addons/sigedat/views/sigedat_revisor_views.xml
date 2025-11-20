@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.revisor
+    Revisor
+    =================================================================
+    -->
+    <record id="revisor_search" model="ir.ui.view">
+        <field name="name">sigedat.revisor.search</field>
+        <field name="model">sigedat.revisor</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="persona_id" string="Nombre del revisor"/>
+                <field name="tipo_cita_id" string="Tipo de cita"/>
+                <group expand="0" string="Group By">
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="revisor_form" model="ir.ui.view">
+        <field name="name">sigedat.revisor.form</field>
+        <field name="model">sigedat.revisor</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <field name="persona_id" />
+                        <field name="tipo_cita_id" />
+                    </group>
+                    <notebook>
+                        <page string="No Disponibilidad" context="{'revisor_id': active_id}">
+                            <field name="no_disponibilidad_ids" context="{'revisor_id': active_id}" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="revisor_tree">
+        <field name="name">sigedat.revisor.tree</field>
+        <field name="model">sigedat.revisor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="persona_id" />
+                <field name="tipo_cita_id" />
+                <field name="no_disponibilidad_ids" />
+            </tree>
+        </field>
+    </record>
+</odoo>

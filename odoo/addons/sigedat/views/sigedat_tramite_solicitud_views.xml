@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.tramite.solicitud
+    Solicitud de Tramite
+    =================================================================
+    -->
+    <record id="tramite_solicitud_search" model="ir.ui.view">
+        <field name="name">sigedat.tramite.solicitud.search</field>
+        <field name="model">sigedat.tramite.solicitud</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="contrato_id" />
+                <field name="id_cita" string="Cita"/>
+                <field name="tipo_cita_id" />
+                <field name="tipo_tramite_id" />
+                <separator string="Estado"/>
+                <filter name="filtro_state_temporal"
+                    string="Temporal"
+                    help="Filtrar por Estado Temporal"
+                    domain="[('state', '=', 'temporal')]"
+                />
+                <filter name="filtro_state_pendiente_revision"
+                    string="Pendiente de revisión"
+                    help="Filtrar por Estado Pendiente de revisión"
+                    domain="[('state', '=', 'pendiente_revision')]"
+                />
+                <filter name="filtro_state_revision_con_observaciones"
+                    string="Revisión con observaciones"
+                    help="Filtrar por Estado revisión con observaciones"
+                    domain="[('state', '=', 'revision_con_observaciones')]"
+                />
+                <filter name="filtro_state_orden_entrega_final"
+                    string="Orden entrega final"
+                    help="Filtrar por Estado con orden entrega final"
+                    domain="[('state', '=', 'orden_entrega_final')]"
+                />
+                <filter name="filtro_state_validado"
+                    string="Validado"
+                    help="Filtrar por Estado validado"
+                    domain="[('state', '=', 'validado')]"
+                />
+                <filter name="filtro_state_cancelado"
+                    string="Cancelado"
+                    help="Filtrar por Estado cancelado"
+                    domain="[('state', '=', 'cancelado')]"
+                />
+                <separator string="Tiene frente"/>
+                <filter name="filtro_tiene_frente_si"
+                    string="Tiene frente"
+                    help="Filtrar tiene frente"
+                    domain="[('tiene_frente', '=', 'si')]"
+                />
+                <filter name="filtro_tiene_frente_no"
+                    string="No tiene frente"
+                    help="Filtrar no tiene frente"
+                    domain="[('tiene_frente', '=', 'no')]"
+                />
+                <separator string="Aplica a topografía"/>
+                <filter name="filtro_aplica_topografia_si"
+                    string="Aplica a topografía"
+                    help="Filtrar aplica a topografía"
+                    domain="[('aplica_topografia', '=', 'si')]"
+                />
+                <filter name="filtro_aplica_topografia_no"
+                    string="No aplica a topografía"
+                    help="Filtrar no aplica a topografía"
+                    domain="[('aplica_topografia', '=', 'no')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter string="Estado" context="{'group_by':'state'}" domain="" name="group_by_state" />
+                    <filter string="Tipo de cita" context="{'group_by':'tipo_cita_id'}" domain="" name="group_by_tipo_cita_id" />
+                    <filter string="Tipo de trámite" context="{'group_by':'tipo_tramite_id'}" domain="" name="group_by_tipo_tramite_id" />
+                    <filter string="Localidad" context="{'group_by':'localidad_id'}" domain="" name="group_by_localidad_id" />
+                    <filter string="Barrio" context="{'group_by':'barrio_id'}" domain="" name="group_by_barrio_id" />
+                    <filter string="Aprobado" context="{'group_by':'aprobado_id'}" domain="" name="group_by_aprobado_id" />
+                    <filter string="Validado" context="{'group_by':'validado_id'}" domain="" name="group_by_validado_id" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="tramite_solicitud_form" model="ir.ui.view">
+        <field name="name">sigedat.tramite.solicitud.form</field>
+        <field name="model">sigedat.tramite.solicitud</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="1">
+                <header>
+                    <field name="state" widget="statusbar" />
+                    <button
+                        string="Cancelar"
+                        type="action"
+                        name="%(base_conf.action_registrar_mensaje)d"
+                        context="{'registro_id': id, 'titulo':'Ingrese el motivo de la cancelación', 'prefijo': 'Solicitud cancelada: ', 'metodo_ejecutar_despues': 'wkf_cancelado'}"
+                        class="oe_highlight"
+                        states="temporal,creado"
+                        groups='sigedat.principal'
+                    />
+                    <button
+                        string="Enviar a revision"
+                        type="object"
+                        name="wkf__en_revision"
+                        class="oe_highlight"
+                        states="pendiente_revision"
+                        groups='sigedat.revisor'
+                    />
+                    <button
+                        string="Revision en espera"
+                        type="object"
+                        name="wkf__revision_en_espera"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('state', '!=', 'en_revision'), ('tramite_abreviatura','in',['asesoria_topografia', 'asesoria_planos_record'])]}"
+                        groups='sigedat.revisor'
+                    />
+                    <button
+                        string="Rechazar"
+                        type="action"
+                        name="%(base_conf.action_registrar_mensaje)d"
+                        context="{'registro_id': id, 'titulo':'Ingrese el motivo de rechazo', 'prefijo': 'Solicitud rechazada: ', 'metodo_ejecutar_despues': 'wkf_rechazado'}"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('state', 'not in', ['en_revision', 'revision_en_espera']), ('tramite_abreviatura','in',['asesoria_topografia', 'asesoria_planos_record'])]}"
+                        groups='sigedat.revisor'
+                    />
+                    <button
+                        string="En validacion"
+                        type="object"
+                        name="wkf__en_aprobacion"
+                        class="oe_highlight"
+                        groups='sigedat.revisor'
+                        attrs="{'invisible': ['|', ('state', 'not in', ['en_revision', 'revision_en_espera', 'devolucion_aprobacion']), ('tramite_abreviatura','not in',['asignacion_numero_record_disenio', 'asignacion_numero_record_obra', 'revision_topografia'])]}"
+                    />
+                    <button
+                        string="Validado"
+                        type="object"
+                        name="wkf_validado"
+                        class="oe_highlight"
+                        groups='sigedat.revisor'
+                        states="en_aprobacion"
+                    />
+                    <button
+                        string="Validado"
+                        type="object"
+                        name="wkf_validado"
+                        class="oe_highlight"
+                        groups='sigedat.revisor'
+                        attrs="{'invisible': ['|', ('state', '!=', 'en_revision'), ('tramite_abreviatura','not in',['asesoria_topografia', 'asesoria_planos_record'])]}"
+                    />
+                    <button 
+                        string="Devolver validación" 
+                        type="action" 
+                        name="%(base_conf.action_registrar_mensaje)d"
+                        context="{'registro_id': id, 'titulo':'Ingrese el motivo de la devolución', 'prefijo': 'Solicitud devuelta: ', 'metodo_ejecutar_despues': 'wkf__devolucion_aprobacion'}" 
+                        class="oe_highlight"
+                        states="en_aprobacion"
+                        groups='sigedat.lider_area'
+                    />
+                    <button 
+                        string="Revision con observaciones" 
+                        type="action" 
+                        name="%(sigedat_wizard_devolver_tramite_action)d"
+                        context="{'active_id': id}" 
+                        class="oe_highlight"
+                        groups='sigedat.revisor'
+                        attrs="{'invisible': ['|', ('state','not in',['revision_en_espera', 'en_revision']), ('tramite_abreviatura','not in',['revision_topografia', 'revision_planos_record_disenio', 'revision_planos_record_obra','asignacion_numero_record_disenio','asignacion_numero_record_obra'])]}"
+                    />
+                    <button
+                        string="Confirmar validacion"
+                        type="object"
+                        name="wkf__validado_confirmado"
+                        class="oe_highlight"
+                        groups='sigedat.administrador,sigedat.lider_area'
+                        attrs="{'invisible': [('state','not in',['validado', 'orden_entrega_final']),]}"
+                    />
+                    <button
+                        string="Orden entrega final"
+                        type="object"
+                        name="wkf__orden_entrega_final"
+                        class="oe_highlight"
+                        groups='sigedat.revisor'
+                        attrs="{'invisible': ['|', '|', ('ploteo_boton_orden_final','in',['',None,False]), ('state','not in',['en_revision', 'revision_en_espera']),('tramite_abreviatura','not in',['revision_planos_record_disenio', 'revision_planos_record_obra'])]}"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            string="Firmado completo"
+                            type="object"
+                            name="wkf__validado_confirmado"
+                            icon="fa-check"
+                            class="btn btn-secondary"
+                            groups='sigedat.administrador'
+                        />
+                    </div>
+                    <group>
+                        <field name="ploteo_boton_orden_final" invisible="1" />
+                        <field name="apoyos_ids" invisible="1" />
+                        <field name="tramite_id" readonly="1"/>
+                        <field name="objeto_contrato" />
+                        <field name="empresa_contratista" />
+                        <field name="correo_electronico_contratista" />
+                        <field name="telefono_contratista" />
+                        <field name="area_id" options="{'no_open': True}"  />
+                        <field name="fue_devuelto" invisible="1"/>
+                        <field name="tiene_frente" />
+                        <field name="aplica_topografia" />
+                        <field name="frente_id" attrs="{'invisible': [('tiene_frente','=','no')]}" options="{'no_open': True}" />
+                        <field name="tramite_abreviatura" invisible="1"/>
+                    </group>
+                    <group >
+                        <field name="tipo_cita_id" readonly="1" options="{'no_open': True}" />
+                        <field name="tipo_tramite_id" readonly="1" options="{'no_open': True}" />
+                        <field name="tipo_cita_devolucion_id" readonly="1" options="{'no_open': True}" />
+                        <field name="es_asesoria" invisible="1"/>
+                        <field name="es_admin" invisible="1" />
+                        <field name="revisor_id" invisible="1" />
+                    </group>
+                    <group attrs="{'invisible': [('es_admin','=', False)]}">
+                        <button
+                            string="Asignar revisor"
+                            type="action"
+                            name="%(sigedat_wizard_asignar_revisor_action)d"
+                            icon="fa-plus-circle"
+                            class="btn btn-secondary"
+                            states="pendiente_revision"
+                            context="{'solicitud_tramite_id': active_id, 'tipo_cita_id': tipo_cita_id, 'tipo_tramite_id': tipo_tramite_id, 'tramite_id': tramite_id, 'revisor_id': revisor_id}"
+                        />
+                    </group>
+                    <group>
+                        <separator string="Formato lista de chequeo"
+                            attrs="{'invisible': [
+                                ('formato_lista_chequeo_firmado_manual','not in',[False, '']),
+                            ]}"
+                        />
+                        <group colspan="2"
+                            attrs="{'invisible': [
+                                ('formato_lista_chequeo_firmado_manual','not in',[False, '']),
+                            ]}" 
+                        >
+                            <field name="formato_lista_chequeo" readonly="1" filename="formato_lista_chequeo_nombre"
+                                widget="file" nolabel="1"
+                                attrs="{'invisible': [
+                                    ('formato_lista_chequeo_firmado_manual','not in',[False, '']),
+                                ]}" 
+                            />
+                            <field name="formato_lista_chequeo_nombre" invisible="1"/>
+                        </group>
+                        <group colspan="2"
+                            attrs="{'invisible': [
+                                    ('formato_lista_chequeo_firmado_manual','not in',[False, ''])
+                                ]}"
+                        >
+                            <div class="oe_button_box" name="button_box">
+                                <button
+                                    string="Generar vista previa"
+                                    type="object"
+                                    name="crear_vista_previa_informe"
+                                    icon="fa-eye"
+                                    class="btn btn-secondary"
+                                    groups='sigedat.administrador,sigedat.revisor'
+                                />
+                            </div>
+                        </group>
+
+                        <separator string="Formato lista de chequeo firmado" states="en_aprobacion,validado,validado_confirmado"
+                            groups='sigedat.administrador,sigedat.revisor,sigedat.lider_area,sigedat.usuario_externo'
+                        />
+                        <group>
+                            <field name="formato_lista_chequeo_firmado_manual_nombre" invisible="1" />
+                        </group>
+
+                        <group colspan="4" groups='sigedat.administrador,sigedat.revisor,sigedat.lider_area,sigedat.usuario_externo' states="en_aprobacion,validado,validado_confirmado" >
+                            <field name="formato_lista_chequeo_firmado_manual" filename="formato_lista_chequeo_firmado_manual_nombre" 
+                                widget="pdf_viewer" nolabel="1"
+                                attrs="{
+                                    'readonly': [('state','!=','en_aprobacion')],
+                                }"
+                            />
+                            <field name="formato_lista_chequeo_firmado_manual_check"
+                                attrs="{
+                                    'invisible': [('formato_lista_chequeo_firmado_manual','=',False)],
+                                    'readonly': [('state','not in',['validado'])],
+                                }"
+                            />
+                        </group>
+
+                        <!-- <group colspan="4" groups='sigedat.lider_area,sigedat.usuario_externo' states="validado,validado_confirmado" >
+                            <field name="formato_lista_chequeo_firmado_manual" filename="formato_lista_chequeo_firmado_manual_nombre" 
+                                widget="pdf_viewer" nolabel="1" readonly="1"
+                            />
+                        </group> -->
+                    </group>
+                    <group>
+                        <div class="card" style="margin: 10px;background-color:gray">
+                            <div class="card-body">
+                                <p>
+                                    Tenga en cuenta que para pasar al estado "En validación" debe diligenciar los campos del grupo <strong>IGAC</strong> y el campo de <strong>Cartesianas</strong> en el grupo de <strong>Planas cartesianas locales</strong> en la pestaña <strong>Datos de aprobación</strong>.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="card" style="margin: 10px;background-color:gray">
+                            <div class="card-body">
+                                <p>
+                                    Tenga en cuenta que para pasar al estado "Orden de entrega final" debe autorizar el item de <strong>Se autoriza polteo?</strong> en la pestaña <strong>lista de chequeo</strong> y diligenciar los campos del grupo <strong>Cantidad de planos</strong> en la pestaña <strong>Datos de aprobación</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </group>
+                    <notebook>
+                        <page string="Documentos" attrs="{'invisible': [('es_asesoria','=', True)]}">
+                            <div class="card" style="margin: 10px;background-color:gray">
+                                <div class="card-body">
+                                    <p>
+                                        Tenga en cuenta, que tiene plazo de terminar de cargar los documentos o cambiarlos hasta por dos dias, siempre y cuando no indique que finalizo la carga a traves del boton llamado:  <strong>"Finalizar carga"</strong>.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="card" style="margin: 10px;background-color:gray">
+                                <div class="card-body">
+                                    <p>
+                                        Por favor tenga en cuenta que el límite de peso por archivo es de: <strong>128 MB</strong>.
+                                    </p>
+                                </div>
+                            </div>
+                            <group col="4">
+                                <button
+                                    string="Descargar"
+                                    type="object"
+                                    name="comprimir_descargar"
+                                    icon="fa-download"
+                                    class="btn btn-secondary"
+                                    context="{'solicitud_tramite_id': active_id, 'tipo_cita_id':tipo_cita_id, 'tipo_tramite_id':tipo_tramite_id}"
+                                    attrs="{'invisible': ['|', ('state','in',['temporal', 'creado']), ('comprimido', '!=', False)]}"
+                                    groups='base.user_admin,sigedat.revisor,sigedat.lider_area'
+                                />
+                                <field name="comprimido_nombre" invisible="1"/>
+                                <field name="comprimido" filename="comprimido_nombre" widget="file" attrs="{'invisible': [('comprimido','=',False)]}" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="documento_ids" context="{'solicitud_tramite_id': active_id}" nolabel="1" attrs="{'readonly': [('state','!=','temporal')]}">
+                                    <tree create="false" limit="100" default_order="orden" >
+                                        <field name="orden" invisible="0" readonly="1" />
+                                        <field name="solicitud_tramite_id" invisible="1"/>
+                                        <field name="state" invisible="1"/>
+                                        <field name="ruta_carpeta" />
+                                        <field name="carpeta_id" invisible="1"/>
+                                        <field name="tipo_id" options="{'no_create_edit': true}"/>
+                                        <field name="archivo_nombre" invisible="0"/>
+                                        <field name="obligatorio"/>
+                                        <button
+                                            type="action"
+                                            name="%(sigedat_wizard_subir_documento_action)d"
+                                            icon="fa-upload"
+                                            title="Cargar archivos"
+                                            context="{'documento_id': active_id, 'solicitud_id':solicitud_tramite_id}"
+                                            attrs="{'invisible': [('state','!=','temporal')]}"
+                                        />
+                                        <button
+                                            type="action"
+                                            name="%(sigedat_wizard_subir_documento_action)d"
+                                            icon="fa-pencil"
+                                            title="Editar archivo"
+                                            context="{'documento_id': active_id, 'solicitud_id':solicitud_tramite_id, 'se_esta_editando_archivo':True}"
+                                            attrs="{'invisible': ['|', ('archivo_nombre','=', False), ('state','!=','temporal')]}"
+                                        />
+                                        <button
+                                            type="object"
+                                            name="previsualizar_documento"
+                                            icon="fa-eye"
+                                            title="Ver archivo"
+                                            context="{'documento_id': active_id}"
+                                            attrs="{'invisible': ['|', ('archivo_nombre','=', False), ('state','!=','temporal')]}"
+                                        />
+                                </tree>
+                                </field>
+                            </group>
+                            <group col="4">
+                                <button
+                                    string="Finalizar carga"
+                                    type="object"
+                                    name="wkf_creado"
+                                    icon="fa-download"
+                                    class="btn btn-secondary"
+                                    states="temporal"
+                                    groups='sigedat.principal'
+                                    context="{'solicitud_tramite_id': active_id, 'tipo_cita_id':tipo_cita_id, 'tipo_tramite_id':tipo_tramite_id}"
+                                    confirm="Una vez enviado a 'Finalizada la carga', no podrá cambiar o agregar nuevos archivos, a la lista de documentos, ¿Esta seguro?"
+                                />
+                            </group>
+                        </page>
+                        <page string="Lista de chequeo" attrs="{'invisible': [('state','in',['temporal', 'creado']), ('fue_devuelto', '!=', True)]}">
+                        
+                            <field name="lista_item_ids" context="{'solicitud_tramite_id': active_id}" attrs="{'readonly': [('state','!=', 'en_revision')]}">
+                                <tree create="false" limit="100">
+                                    <field name="lista_chequeo_id" options="{'no_create_edit': true}"/>
+                                    <field name="seccion_id"/>
+                                    <field name="cumple"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Datos del cuadro maestro" attrs="{'invisible': [('state','in',['temporal', 'creado']), ('fue_devuelto', '!=', True)], }" groups="sigedat.revisor">
+                            <group string="Revision de topografia" col="4" attrs="{'invisible': [('tramite_abreviatura','!=','revision_topografia'),], 'readonly': [('state','not in',['en_revision', 'revision_en_espera']),]}">
+                                <field name="fecha_asignacion_nivelacion" />
+                                <field name="topografo_asignado_nivelacion_id" />
+                                <field name="fecha_entrega_verificacion_nivelacion" />
+                            </group>
+                        </page>
+                        <page string="Datos de aprobación" attrs="{'invisible': [('state','in',['temporal', 'creado', 'pendiente_revision']),]}" groups="sigedat.revisor">
+                            <group string="Datos de aprobación" col="4" attrs="{'invisible': [('state','not in',['validado_confirmado', 'validado', 'revision_con_observaciones', 'orden_entrega_final']),]}" groups="sigedat.revisor">
+                                <field name="aprobado_id" readonly="1"/>
+                                <field name="fecha_aprobacion" readonly="1"/>
+                                <field name="validado_id" readonly="1"/>
+                                <field name="fecha_validacion" readonly="1"/>
+                                <field name="formato_lista_chequeo" filename="formato_lista_chequeo_nombre" widget="file" attrs="{'invisible': [('formato_lista_chequeo','=',False),],}"/>
+                                <field name="formato_lista_chequeo_nombre" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="notas" />
+                            </group>
+                            <group string="IGAC" col="4" attrs="{'invisible': [('tramite_abreviatura','!=','revision_topografia'),], 'readonly': [('state','not in',['en_revision', 'revision_en_espera']),]}">
+                                <field name="vertice_origen_nivelacion" />
+                                <field name="cota_geometrica" />
+                                <field name="verificada_por" />
+                                <field name="numero_validacion" />
+                            </group>
+                            <group string="Entrega final" col="4" attrs="{'invisible': [('tramite_abreviatura','not in',['asignacion_numero_record_disenio', 'asignacion_numero_record_obra']),], 'readonly': [('state','not in',['en_revision', 'revision_en_espera']),]}">
+                                <field name="direccion_proyecto" />
+                                <field name="localidad_id" />
+                                <field name="barrio_id" />
+                                <field name="norte" />
+                                <field name="este" />
+                                <field name="acueducto_3333" />
+                                <field name="alcantarillado_2000" />
+                                <field name="observacion" />
+                                <field name="radicado_sigue" />
+                                <field name="id_sigue" />
+                                <field name="numero_obra_acueducto" />
+                                <field name="numero_obra_alcantarillado" />
+                                <field name="numero_proyecto_acueducto" />
+                                <field name="numero_proyecto_alcantarillado" />
+                                <field name="longitud_red_acueducto" />
+                                <field name="longitud_red_sanitario" />
+                                <field name="longitud_red_pluvial" />
+                                <field name="longitud_red_combinado" />
+                                <field name="cantidad_unidades_medio_magnetico" />
+                            </group>
+                            <group col="2" string="Planas cartesianas locales" context="{'solicitud_id': active_id}" attrs="{'invisible': [('tramite_abreviatura','!=','revision_topografia'),], 'readonly': [('state','not in',['en_revision', 'revision_en_espera']),]}">
+                                <field name="norma_planas_cartesianas" />
+                                <field name="cartesiana_ids" nolabel="0">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="norte"/>
+                                        <field name="este"/>
+                                        <field name="cota_geometrica"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group attrs="{'invisible': [('aplica_topografia','!=','no')]}" string="Observaciones cuando no aplica a topografia">
+                                <field name="observacion" />
+                            </group>
+                            <group string="Cantidad planos" col="4" attrs="{'invisible': [('tramite_abreviatura','not in',['revision_planos_record_disenio', 'revision_planos_record_obra', 'asignacion_numero_record_disenio', 'asignacion_numero_record_obra']),], 'readonly': [('state','not in',['en_revision', 'revision_en_espera']),]}">
+                                <field name="acueducto" />
+                                <field name="alcantarillado_pluvial" />
+                                <field name="alcantarillado_sanitario" />
+                                <field name="combinado" />
+                                <field name="especiales" />
+                                <field name="total" />
+                            </group>
+                        </page>
+                        <page string="Cita" attrs="{'invisible': [('es_admin','=', False)]}">
+                            <group col="4">
+                                <field name="cita_id" readonly="1"/>
+                                <field name="tipo_cita_id" readonly="1"/>
+                                <field name="tipo_tramite_id" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Agendar cita" attrs="{'invisible': [('state','!=','creado')]}">
+                            <button
+                                string="Agendar"
+                                type="action"
+                                name="%(sigedat_wizard_agendar_cita_action)d"
+                                icon="fa-plus-circle"
+                                class="btn btn-secondary"
+                                states="creado"
+                                context="{'solicitud_tramite_id': active_id, 'tipo_cita_id': tipo_cita_id, 'tipo_tramite_id': tipo_tramite_id, 'tramite_id': tramite_id,}"
+                            />
+                            <button
+                                string="Cancelar Cita"
+                                type="object"
+                                name="wkf_cancelado"
+                                icon="fa-times-circle"
+                                class="btn btn-secondary"
+                                states="pendiente_revision"
+                                invisible="1"
+                            />
+                            <div attrs="{'invisible': [('state','in',['temporal', 'creado'])]}">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <field name="mensaje_confirmacion_cita" readonly="1"/>
+                                    </div>
+                                </div>
+                                <group col="2" string="Cita agendada">
+                                    <field name="cita_id" context="{'solicitud_tramite_id': active_id}" readonly="1"/>
+                                </group>
+                                <group col="4"  attrs="{'invisible': [('cita_id','=',False)]}">
+                                    <field name="fecha_inicio"/>
+                                    <field name="fecha_fin"/>
+                                </group>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="tramite_solicitud_tree">
+        <field name="name">sigedat.tramite.solicitud.tree</field>
+        <field name="model">sigedat.tramite.solicitud</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="true" default_order="create_date"
+                    decoration-bf="color_tree == 'green'"
+                >
+                <field name="color_tree" invisible="1" />
+                <field name="contrato_id" />
+                <field name="frente_id" />
+                <field name="tipo_tramite_id" />
+                <field name="tipo_cita_id" />
+                <field name="cita_id" />
+                <field name="fecha_inicio"/>
+                <field name="fecha_fin"/>
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="tramite_solicitud_lectura_tree">
+        <field name="name">sigedat.tramite.solicitud.tree</field>
+        <field name="model">sigedat.tramite.solicitud</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false"
+                    decoration-bf="color_tree == 'green'"
+                >
+                <field name="color_tree" invisible="1" />
+                <field name="contrato_id" />
+                <field name="tipo_tramite_id" />
+                <field name="tipo_cita_id" />
+                <field name="cita_id" />
+                <field name="fecha_inicio" />
+                <field name="fecha_fin"/>
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="cita_calendar" model="ir.ui.view">
+        <field name="name">sigedat.tramite.solicitud.calendar</field>
+        <field name="model">sigedat.tramite.solicitud</field>
+        <field eval="2" name="priority"/>
+        <field name="arch" type="xml">
+            <calendar color="state" date_start="fecha_inicio" date_stop="fecha_fin" string="Citas" mode="month" event_open_popup="False" quick_add="False">
+                <field name="contrato_id" />
+                <field name="tipo_tramite_id" />
+                <field name="tipo_cita_id" />
+                <field name="state" />
+            </calendar>
+        </field>
+    </record>
+</odoo>

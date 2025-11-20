@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<!-- Vista form -->
+    <record model="ir.ui.view" id="mensaje_codigo_wizard">
+        <field name="model">base_conf.wizard.mensaje_codigo</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="mensaje" nolabel="1" readonly="1" widget="html" />
+                        <field name="codigo" nolabel="1" readonly="1" invisible="1" />
+                    </group>
+                    <footer>
+                        <button name="ejecutar_codigo" string="Aceptar" type="object" icon="fa-check-square-o fa-x2"  class="oe_highlight" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_mensaje_codigo">
+        <field name="name">Mostrar Mensaje y Ejecutar Código</field>
+        <field name="res_model">base_conf.wizard.mensaje_codigo</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+    </record>
+</data>
+</openerp>

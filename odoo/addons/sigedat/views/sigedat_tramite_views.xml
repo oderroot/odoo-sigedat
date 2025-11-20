@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.tramite
+    Tramite
+    =================================================================
+    -->
+    <record id="tramite_search" model="ir.ui.view">
+        <field name="name">sigedat.tramite.search</field>
+        <field name="model">sigedat.tramite</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="solicitud_ids" />
+                <field name="state" />
+                <field name="contrato_id" />
+                <separator string="Tiene frente"/>
+                <filter name="filtro_tiene_frente_si"
+                    string="Tiene frente"
+                    help="Filtrar tiene frente"
+                    domain="[('tiene_frente', '=', 'si')]"
+                />
+                <filter name="filtro_tiene_frente_no"
+                    string="No tiene frente"
+                    help="Filtrar no tiene frente"
+                    domain="[('tiene_frente', '=', 'no')]"
+                />
+                <separator string="Tiene redes de acueducto"/>
+                <filter name="filtro_tiene_redes_acueducto_si"
+                    string="Si tiene redes de acueducto"
+                    help="Filtrar tiene redes de acueducto"
+                    domain="[('tiene_redes_acueducto', '=', 'si')]"
+                />
+                <filter name="filtro_tiene_redes_acueducto_no"
+                    string="No tiene redes de acueducto"
+                    help="Filtrar no tiene redes de acueducto"
+                    domain="[('tiene_redes_acueducto', '=', 'no')]"
+                />
+                <separator string="Aplica a topografía"/>
+                <filter name="filtro_aplica_topografia_si"
+                    string="Si aplica a topografía"
+                    help="Filtrar aplica a topografía"
+                    domain="[('aplica_topografia', '=', 'si')]"
+                />
+                <filter name="filtro_aplica_topografia_no"
+                    string="No aplica a topografía"
+                    help="Filtrar no aplica a topografía"
+                    domain="[('aplica_topografia', '=', 'no')]"
+                />
+                <separator string="Tipo record"/>
+                <filter name="filtro_tipo_record_disenio"
+                    string="Diseño"
+                    help="Filtrar tipo record diseño"
+                    domain="[('tipo_record', '=', 'disenio')]"
+                />
+                <filter name="filtro_tipo_record_obra"
+                    string="Obra"
+                    help="Filtrar tipo record obra"
+                    domain="[('tipo_record', '=', 'obra')]"
+                />
+                <filter name="filtro_tipo_record_disenio_obra"
+                    string="Diseño y obra"
+                    help="Filtrar tipo record diseño y obra"
+                    domain="[('tipo_record', '=', 'disenio_obra')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter string="Acuerdo" context="{'group_by':'contrato_id'}" domain="" name="group_contrato_id"/>
+                    <filter string="Estado" context="{'group_by':'state'}" domain="" name="group_state"/>
+                    <filter string="Tiene redes de acueducto" context="{'group_by':'tiene_redes_acueducto'}" domain="" name="group_tiene_redes_acueducto"/>
+                    <filter string="Aplica a topografía" context="{'group_by':'aplica_topografia'}" domain="" name="group_aplica_topografia"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="tramite_form" model="ir.ui.view">
+        <field name="name">sigedat.tramite.form</field>
+        <field name="model">sigedat.tramite</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" />
+                    <button
+                        string="Ver cuadro maestro"
+                        type="object"
+                        name="ver_cuadro_maestro"
+                        states="en_proceso"
+                        groups='sigedat.usuario_interno'
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="card" style="margin: 10px;background-color:gray">
+                        <div class="card-body">
+                            <p>
+                                Sr Usuario,
+                            </p>
+                            <p>
+                                Si el acuerdo que va a gestionar no esta en la lista de acuerdos, por favor creelo, a través de la opción <strong>"Registrar Acuerdo"</strong>.
+                            </p>
+                        </div>
+                    </div>
+                    <field name="forma_parte_equipo_apoyo" invisible="1"/>
+                    <group string="Información del acuerdo" col="4">
+                        <field name="contrato_id" attrs="{'readonly': [('state','!=', 'nuevo')]}"/>
+                        <field name="fecha_inicio" />
+                        <field name="fecha_fin" />
+                        <field name="objeto" />
+                        <field name="tiene_frente" />
+                        <field name="numero_disenio" />
+                        <field name="tipo_record" attrs="{'invisible': [('tipo_record','=', False)],}"/>
+                        <field name="frente_id" attrs="{'invisible': [('tiene_frente','=', 'no')], 'required': [('tiene_frente','=', 'si')], 'readonly': [('state','!=', 'nuevo')]}" widget="selection"/>
+                    </group>
+                    <group string="Información de la empresa/contratista" col="4">
+                        <field name="empresa_contratista" />
+                        <field name="correo_electronico_contratista" />
+                        <field name="telefono_contratista" />
+                    </group>
+                    <group string="Información del supervisor/delegado" col="4">
+                        <field name="area_id" />
+                        <field name="supervisor" />
+                        <field name="correo_electronico_supervisor" />
+                    </group>
+                    <group string="Información del interventor" col="4">
+                        <field name="contrato_interventoria" />
+                        <field name="nombre_empresa_interventor" />
+                        <field name="nombre_interventor" />
+                        <field name="correo_electronico_interventor" />
+                        <field name="telefono_interventor" />
+                    </group>
+                    <notebook>
+                        <page string="Generalidades">
+                            <div class="card" style="margin: 10px;background-color:gray">
+                                <div class="card-body">
+                                    <p>
+                                        Sr Usuario,
+                                    </p>
+                                    <p>
+                                        Una vez termine de registrar la información de los frentes del acuerdo y de la pestaña generalidades, por favor confirmela, a través de la opción <strong>"Pasar a En Proceso"</strong>.
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                string="Pasar a En Proceso"
+                                type="object"
+                                class='btn btn-primary'
+                                name="wkf__en_proceso"
+                                states="nuevo"
+                                groups='sigedat.usuario_externo'
+                                confirm="Una vez enviado a 'En Proceso', no podrá cambiar el acuerdo al cual le esta haciendo seguimiento, ¿Esta seguro?"
+                            />
+                            <button
+                                string="Seleccionar ubicación"
+                                type="object"
+                                name="ir_mapa"
+                                states="en_proceso"
+                                confirm="¿Esta seguro?"
+                            />
+                            <group col="4">
+                                <field name="latitud" required="1" attrs="{'readonly': [('state','!=', 'nuevo')]}"/>
+                                <field name="longitud" required="1" attrs="{'readonly': [('state','!=', 'nuevo')]}"/>
+                            </group>
+                            <group col="2">
+                                <field name="tiene_redes_acueducto" required="1" attrs="{'readonly': [('state','!=', 'nuevo')]}"/>
+                                <field name="aplica_topografia" attrs="{'readonly': [('state','!=', 'nuevo')], 'required': [('aplica_topografia','=', 'no')]}"/>
+                            </group>
+                        </page>
+                        <page string="Equipo de apoyo">
+                            <div class="card" style="margin: 10px;background-color:gray">
+                                <div class="card-body">
+                                    <p>
+                                        Sr Usuario,
+                                    </p>
+                                    <p>
+                                        Por favor ingrese los datos de las personas que harán parte de su equipo de apoyo.<br/><br/>
+                                        Tener en cuenta que su equipo de apoyo empieza a interactuar en el sistema una vez creado el tramite.
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                string="Agregar integrante"
+                                type="action"
+                                name="%(sigedat_wizard_agregar_persona_action)d"
+                                icon="fa-plus-circle"
+                                class="btn btn-secondary"
+                                context="{'tramite_id': active_id}"
+                                groups='sigedat.usuario_externo'
+                            />
+                            <group>
+                                <field name="equipo_apoyo_ids" context="{'tramite_id': active_id}" nolabel="1" readonly="1">
+                                <tree >
+                                    <field name="grupo_id" options="{'no_create_edit': true}"/>
+                                    <field name="persona_ids" options="{'no_create_edit': true}"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Contactos">
+                            <div class="card" style="margin: 10px;background-color:gray">
+                                <div class="card-body">
+                                    <p>
+                                        Sr Usuario,
+                                    </p>
+                                    <p>
+                                        Por favor ingrese los correos de las personas adicionales al equipo de apoyo, que desee sean notificadas.
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                string="Agregar contacto"
+                                type="action"
+                                name="%(sigedat_wizard_agregar_contacto_action)d"
+                                icon="fa-plus-circle"
+                                class="btn btn-secondary"
+                                context="{'tramite_id': active_id}"
+                                groups='sigedat.usuario_externo'
+                            />
+                            <group>
+                                <field name="contacto_ids" nolabel="1" readonly="1">
+                                    <tree >
+                                        <field name="name" />
+                                        <field name="correo_electronico" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Trámites">
+                            <div class="card" style="margin: 10px;background-color:gray">
+                                <div class="card-body">
+                                    <p>
+                                        Sr usuario,
+                                    </p>
+                                    <p>
+                                        Por favor a través de la opción "Iniciar trámite" configure las condiciones del tipo de trámite que va iniciar
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                string="Iniciar trámite"
+                                type="action"
+                                name="%(sigedat_wizard_iniciar_solicitud_action)d"
+                                icon="fa-plus-circle"
+                                class="btn btn-secondary"
+                                context="{'tramite_id': active_id}"
+                                states="en_proceso"
+                                groups='sigedat.usuario_externo'
+                            />
+                            <group>
+                                <field name="solicitud_ids" context="{'tramite_id': active_id}" nolabel="1">
+                                    <tree create="false" edit="false">
+                                        <field name="tipo_cita_id" options="{'no_create_edit': true}"/>
+                                        <field name="tipo_tramite_id" options="{'no_create_edit': true}"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="tramite_tree">
+        <field name="name">sigedat.tramite.tree</field>
+        <field name="model">sigedat.tramite</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="contrato_id" />
+                <field name="frente_id" />
+                <field name="area_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+</odoo>

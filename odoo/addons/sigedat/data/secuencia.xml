@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Secuencia del número de lista de chequeo -->
+        <record forcecreate="0" id="numero_lista_chequeo_seq" model="ir.sequence">
+            <field name="name">sigedat.numero_lista_chequeo</field>
+            <field name="code">numero_lista_chequeo.secuencia</field>
+            <field name="padding" eval="6"/>
+            <field name="prefix"></field>
+            <field name="suffix"></field>
+        </record>
+    </data>
+</odoo>

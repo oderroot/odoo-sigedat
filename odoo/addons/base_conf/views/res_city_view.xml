@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Barrio
+    =================================================================
+    -->
+    <record model="ir.actions.act_window" id="barrio_action">
+        <field name="name">Barrio</field>
+        <field name="res_model">base.barrio</field>
+        <field name="context">{'active_test': False}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="barrio_menu"
+        parent="base_menu"
+        sequence="20"
+        name="Barrios" action="barrio_action"
+    />
+
+    <!--
+    =================================================================
+    Localidad
+    =================================================================
+    -->
+    <record model="ir.actions.act_window" id="localidad_action">
+        <field name="name">Localidad</field>
+        <field name="res_model">base.localidad</field>
+        <field name="context">{'active_test': False}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="localidad_menu"
+        parent="base_menu"
+        sequence="20"
+        name="Localidades" action="localidad_action"
+    />
+
+</odoo>

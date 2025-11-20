@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Wizard View
+    =================================================================
+    -->
+    <record model="ir.ui.view" id="sigedat_wizard_configuracion_general">
+        <field name="name">Configuracion General</field>
+        <field name="model">sigedat.wizard.configuracion_general</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Configuración general"/>
+                    <div class="card">
+                        <div class="card-body">
+                            <p> Sr Usuario, por favor lea el título de cada sección y configure lo necesario finalizando con la opción de "Guardar configuración".
+                            </p>
+                        </div>
+                    </div>
+                    <group string="Configuración Sigedat" >
+                        <field name="base_datos"/>
+                    </group>
+                    <group string="Configuración SAM" >
+                        <field name="esta_activa_conexion_sam"/>
+                        <field name="cliente_sam"/>
+                        <field name="url_consultar_usuario_sam"/>
+                        <field name="token_consultar_usuario_sam"/>
+                    </group>
+                    <group string="Configuración SAP" >
+                        <field name="esta_activa_conexion_sap"/>
+                        <field name="cliente_sap"/>
+                        <field name="url_validar_aviso_sap"/>
+                        <field name="token_validar_aviso_sap"/>
+                        <field name="url_obtener_contrato_sap"/>
+                        <field name="token_obtener_contrato_sap"/>
+                    </group>
+                    <group string="Configuración GoSign" >
+                        <field name="esta_activa_conexion_gosign"/>
+                        <field name="usuario_gosign"/>
+                        <field name="clave_gosign"/>
+                        <field name="cliente_oauth_gosign"/>
+                        <field name="secreto_oauth_gosign"/>
+                        <field name="url_obtener_token"/>
+                        <field name="url_firmar_documento"/>
+                        <field name="url_obtener_documento_firmado"/>
+                        <field name="etiqueta_firma_1"/>
+                        <field name="etiqueta_firma_2"/>
+                    </group>
+                    <group string="Copia de seguridad">
+                        <field name="ruta_copia_seguridad"/>
+                    </group>
+                    <group string="Plantillas de correo electrónico">
+                        <field name="plantilla_correo_id" options="{'no_create_edit': true}"/>
+                        <field name="direccion_correo_remitente" attrs="{'invisible': [('plantilla_correo_id','=', False)], 'required': [('plantilla_correo_id','!=', False)]}"/>
+                        <field name="direccion_correo_destinatario" attrs="{'invisible': [('plantilla_correo_id','=', False)], 'required': [('plantilla_correo_id','!=', False)]}"/>
+                        <field name="asunto_correo" attrs="{'invisible': [('plantilla_correo_id','=', False)], 'required': [('plantilla_correo_id','!=', False)]}"/>
+                        <field name="cuerpo_correo" widget="html" attrs="{'invisible': [('plantilla_correo_id','=', False)], 'required': [('plantilla_correo_id','!=', False)]}"/>
+                    </group>
+                    <footer>
+                        <button string="Guardar configuración"
+                            name="guardar_configuracion"
+                            type="object"
+                            class="btn-primary"
+                        />
+                        <button string="Cancelar"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sigedat_wizard_configuracion_general_action">
+        <field name="name">Configuracion general</field>
+        <field name="res_model">sigedat.wizard.configuracion_general</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

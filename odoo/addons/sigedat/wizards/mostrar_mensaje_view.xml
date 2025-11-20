@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Wizard View
+    =================================================================
+    -->
+    <record model="ir.ui.view" id="sigedat_wizard_mostrar_mensaje">
+        <field name="name">Mostrar Mensaje</field>
+        <field name="model">sigedat.wizard.mostrar_mensaje</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Mensaje"/>
+                    <div class="card">
+                        <div class="card-body">
+                            <field name="mensaje" readonly="1" />
+                        </div>
+                    </div>
+                    <footer>
+                        <button string="Aceptar"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sigedat_wizard_mostrar_mensaje_action">
+        <field name="name">Mostrar Mensaje</field>
+        <field name="res_model">sigedat.wizard.mostrar_mensaje</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

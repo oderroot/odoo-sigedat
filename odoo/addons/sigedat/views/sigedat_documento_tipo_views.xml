@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    sigedat.documento.tipo
+    Tipo de Documento
+    =================================================================
+    -->
+    <record id="documento_tipo_search" model="ir.ui.view">
+        <field name="name">sigedat.documento.tipo.search</field>
+        <field name="model">sigedat.documento.tipo</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="descripcion" />
+                <field name="activo" />
+                <field name="obligatorio" />
+                <separator string="Obligatorio"/>
+                <filter name="filtro_obligatorio_si"
+                    string="Obligatorio"
+                    help="Filtrar obligatorio"
+                    domain="[('obligatorio', '=', True)]"
+                />
+                <filter name="filtro_obligatorio_no"
+                    string="No obligatorio"
+                    help="Filtrar no obligatorio"
+                    domain="[('obligatorio', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter string="Cantidad" context="{'group_by':'cantidad'}" domain="" name="group_by_cantidad" />
+                    <filter string="Obligatorio" context="{'group_by':'obligatorio'}" domain="" name="group_by_obligatorio" />
+                    <filter string="Activo" context="{'group_by':'activo'}" domain="" name="group_by_activo" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="documento_tipo_form" model="ir.ui.view">
+        <field name="name">sigedat.documento.tipo.form</field>
+        <field name="model">sigedat.documento.tipo</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group col="4">
+                        <field name="name" />
+                        <field name="cantidad" />
+                        <field name="descripcion" />
+                        <field name="activo" />
+                        <field name="obligatorio" />
+                    </group>
+                    <group string="Extensiones Asociadas">
+                        <field name="extension_ids" nolabel="1"/>
+                    </group>
+                    <notebook>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="documento_tipo_tree">
+        <field name="name">sigedat.documento.tipo.tree</field>
+        <field name="model">sigedat.documento.tipo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name" />
+                <field name="extension_ids" />
+                <field name="descripcion" />
+                <field name="activo" />
+                <field name="obligatorio" />
+            </tree>
+        </field>
+    </record>
+</odoo>

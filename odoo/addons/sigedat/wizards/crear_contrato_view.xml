@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Wizard View
+    =================================================================
+    -->
+    <record model="ir.ui.view" id="sigedat_wizard_crear_contrato">
+        <field name="name">Registrar acuerdo</field>
+        <field name="model">sigedat.wizard.crear_contrato</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Registrar acuerdo"/>
+                        <field name="tipo" invisible="1"/>
+                        <div class="card">
+                            <div class="card-body">
+                                <p>
+                                Sr usuario, por favor tenga en cuenta lo siguiente:
+                                </p>
+                                <ul>
+                                <li>
+                                Los contratos IDU tienen el formato: IDU-0000-AÑO, y los datos se ingresan de forma manual por el usuario.
+                                </li>
+                                <li>
+                                Las cartas de compromiso tienen el formato: 9-99-00000-00000-AÑO. Adicionalmente, recuerde que el número de la Carta de Compromiso se debe introducir sin guiones, ni caracteres diferentes a números.
+                                </li>
+                                <li>
+                                Los contratos acueducto tienen el formato: 1/2-01/02-00000-00000-AÑO, adicionalmente, recuerde que el número de los Contratos de Acueducto se debe introducir sin guiones, ni caracteres diferentes a números.
+                                </li>
+                                <li>
+                                La disponibilidad de servicio no tiene un formato específico, los datos se ingresan de forma manual por el usuario.
+                                </li>
+                                <li>
+                                Los convenios no tienen un formato, los datos se ingresan de forma manual por el usuario.
+                                </li>
+                                </ul>
+                                <p>
+                                Adicionalmente, recuerde que los campos de color morado son campos obligatorios.
+                                </p>
+                            </div>
+                        </div>
+                    <group col="2">
+                        <field name="tipo_id" required="1"/>
+                    </group>
+                    <group col="2">
+                        <field name="prefijo_acueducto" attrs="{'invisible': [('tipo','!=', 'acueducto')], 'required': [('tipo','=', 'acueducto')]}"/>
+                    </group>
+                    <group col="4" attrs="{'invisible': [('tipo_id', '=', False)],}">
+                        <field name="numero" required="1"/>
+                        <field name="anio" attrs="{'invisible': [('tipo','not in', ['idu', 'carta_compromiso', 'acueducto'])], 'required': [('tipo','in', ['idu', 'carta_compromiso', 'acueducto'])]}"/>
+                    </group>
+                    <group>
+                        <button string="Consultar SAP"
+                            name="obtener_contrato_sap"
+                            type="object"
+                            class="btn-primary"
+                            invisible="1"
+                            attrs="{'invisible': [('tipo', 'not in', ['carta_compromiso', 'acueducto', 'disponibilidad_servicio'])],}"
+                        />
+                    </group>
+                    <group attrs="{'invisible': [('tipo_id', '=', False)],}" col="4">
+                        <field name="fecha_inicio" required="1" />
+                        <field name="fecha_fin" required="1" />
+                        <field name="tiene_frente" required="1" />
+                        <field name="tipo_record" required="1" />
+                        <field name="numero_disenio" attrs="{'invisible': [ ('tipo_record', '!=', 'obra')], 'required': [('tipo_record','=', 'obra')]}"/>
+                    </group>
+                    <group attrs="{'invisible': [('tipo_id', '=', False)],}">
+                        <field name="objeto" required="1" />
+                    </group>
+                    <group attrs="{'invisible': [('tipo_id', '=', False)],}">
+                        <separator string="Empresa/Contratista"/>
+                        <field name="empresa_contratista" required="1" />
+                        <field name="correo_electronico_contratista" required="1" />
+                        <field name="telefono_contratista" required="1" />
+                    </group>
+                    <group attrs="{'invisible': [('tipo_id', '=', False)],}">
+                        <separator string="Supervisor/Delegado"/>
+                        <field name="area_id" required="1" />
+                        <field name="supervisor" required="1" />
+                        <field name="correo_electronico_supervisor" required="1" />
+                    </group>
+                    <group attrs="{'invisible': [('tipo_id', '=', False)],}">
+                        <separator string="Interventor Externo"/>
+                        <field name="tiene_interventoria"  attrs="{'required': [('tipo','in', ['idu', 'convenio'])], }"/>
+                        <field name="contrato_interventoria" attrs="{'invisible': [('tiene_interventoria', '=', 'no')], 'required': [('tiene_interventoria','=', 'si')]}"/>
+                        <field name="nombre_empresa_interventor" attrs="{'invisible': [('tiene_interventoria', '=', 'no')], 'required': [('tiene_interventoria','=', 'si')]}"/>
+                        <field name="nombre_interventor" attrs="{'invisible': [('tiene_interventoria', '=', 'no')], 'required': [('tiene_interventoria','=', 'si')]}"/>
+                        <field name="correo_electronico_interventor" attrs="{'invisible': [('tiene_interventoria', '=', 'no')], 'required': [('tiene_interventoria','=', 'si')]}"/>
+                        <field name="telefono_interventor" attrs="{'invisible': [('tiene_interventoria', '=', 'no')], 'required': [('tiene_interventoria','=', 'si')]}"/>
+                    </group>
+                    <footer>
+                        <button string="Crear"
+                            name="crear_contrato"
+                            type="object"
+                            class="btn-primary"
+                            attrs="{'invisible': [('tipo_id', '=', False)],}"
+                            confirm="¿Esta seguro de la  información ingresada?"
+                        />
+                        <button string="Cancelar"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sigedat_wizard_crear_contrato_action">
+        <field name="name">Registrar acuerdo</field>
+        <field name="res_model">sigedat.wizard.crear_contrato</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

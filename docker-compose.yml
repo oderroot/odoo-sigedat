@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  postgres_odoo_15_sigedat:
+    image: postgres:13
+    container_name: postgres_odoo_15_sigedat
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      -  "5432:5432"
+    volumes:
+      - ./odoo-db-data:/var/lib/postgresql/data
+    networks:
+      - odoo-network-sigedat
+
+  odoo_15_sigedat:
+    build:
+      context: odoo
+      dockerfile: Dockerfile
+    container_name: odoo_15_sigedat
+    depends_on:
+      - postgres_odoo_15_sigedat
+    env_file:
+      - .env
+    environment:
+      - ODOO_COMMAND=${ODOO_COMMAND:-run}
+      - MODULE=${MODULE:-base}
+      - HOST=postgres_odoo_15_sigedat
+      - USER=${POSTGRES_USER}
+      - PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "${ODOO_PORT}:8069"
+      - "9888:8888"
+      - "8080:8080"
+
+    volumes:
+      - ./odoo/config:/etc/odoo
+      - ./odoo/addons:/mnt/extra-addons
+      - ./odoo/data:/var/lib/odoo
+    networks:
+      - odoo-network-sigedat
+    command: ["/bin/bash", "/usr/local/bin/entrypoint.sh"]
+
+networks:
+  odoo-network-sigedat:
+    driver: bridge

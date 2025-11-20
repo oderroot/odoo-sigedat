@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Wizard View
+    =================================================================
+    -->
+    <record model="ir.ui.view" id="sigedat_wizard_iniciar_solicitud">
+        <field name="name">Iniciar Tramite</field>
+        <field name="model">sigedat.wizard.iniciar_solicitud</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Iniciar trámite"/>
+                    <group>
+                        <field name="tipo_cita_ids_permitidos" invisible="1"/>
+                        <field name="tipo_cita_id" 
+                               options="{'no_open': True}"/>
+                        <field name="tipo_tramite_id" options="{'no_open': True}"/>
+                    </group>
+                    <div class="alert alert-info o_form_sheet_bg" 
+                         style="margin: 10px 0; padding: 10px; border-radius: 5px;">
+                        <i class="fa fa-info-circle"/> <strong>Nota:</strong> 
+                        <span>Solo puede crear solicitudes de los tipos de cita devueltos por el revisor, si aplica.</span>
+                    </div>
+                    <footer>
+                        <button string="Iniciar"
+                            name="iniciar_solicitud"
+                            type="object"
+                            class="btn-primary"
+                        />
+                        <button string="Cancelar" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sigedat_wizard_iniciar_solicitud_action">
+        <field name="name">Iniciar Solicitud</field>
+        <field name="res_model">sigedat.wizard.iniciar_solicitud</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

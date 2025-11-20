@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    =================================================================
+    Wizard View
+    =================================================================
+    -->
+    <record model="ir.ui.view" id="sigedat_wizard_agendar_cita">
+        <field name="name">Agendar Cita</field>
+        <field name="model">sigedat.wizard.agendar_cita</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Agendar Cita"/>
+                    <div class="card">
+                        <div class="card-body">
+                            <field name="mensaje" readonly="1"/>
+                        </div>
+                    </div>
+                    <group>
+                        <field name="solicitud_tramite_id" readonly="1"/>
+                        <field name="tipo_cita_id" readonly="1"/>
+                        <field name="tipo_tramite_id" readonly="1"/>
+                        <field name="fecha_disponible"/>
+                        <field name="bloque_id"/>
+                        <field name="aviso_sap"/>
+                        <field name="revisor_id" invisible="1" />
+                    </group>
+                    <footer>
+                        <button string="Agendar"
+                            name="agendar_cita"
+                            type="object"
+                            class="btn-primary"
+                        />
+                        <button string="Cancelar"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sigedat_wizard_agendar_cita_action">
+        <field name="name">Agendar Cita</field>
+        <field name="res_model">sigedat.wizard.agendar_cita</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
