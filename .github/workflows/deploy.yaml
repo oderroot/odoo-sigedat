@@ -1,22 +1,46 @@
----
-name: Cuarto Datos CI/CD Pipeline
+# This workflow will build a Python project (ODOO)
+# Pipeline configurado para runner - VISERION
+
+name: ODOO Sigedat CI/CD Pipeline
+
+permissions:
+  packages: write
+  contents: read
 
 on:
   push:
-    branches: [ "main", "release", "develop", "feature" ] 
-  pull_request:
-    branches: [ "main", "release", "develop", "feature" ]
+    branches: [ "main", "release", "develop" ] 
+
+# BLOQUEAR COMPLETAMENTE EL PIPELINE PARA RAMAS FEATURE
+# No ejecutar NADA si es rama feature (push, pull request, o cualquier evento)
+
+env:
+  ODOO_VERSION: '15.0'
 
 jobs:
+  # CONDICIÓN A NIVEL DE WORKFLOW - NO EJECUTA SI ES RAMA FEATURE
+  # SOLO SI LA RAMA ES: main, release o develop
+  check-branch:
+    name: Check branch
+    runs-on: ubuntu-latest
+    if: ${{ !startsWith(github.ref, 'refs/heads/feature/') && !startsWith(github.head_ref, 'feature/') }}
+    steps:
+      - name: Verificar que no sea branch feature
+        run: |
+          echo "=== VERIFICACIÓN DE RAMA ==="
+          echo "✅ github.ref: ${{ github.ref }}"
+          echo "✅ github.head_ref: ${{ github.head_ref }}"
+          echo "✅ github.event_name: ${{ github.event_name }}"
+          echo "🌿 Branch valida - continuando con el pipeline..."
 
-  build-and-push-image:
-    name: Build Docker Image and Deploy to Server
-    runs-on: [ "viserion", "self-hosted", "Linux", "X64" ]
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/feature'
-    permissions:
-      packages: write
-      contents: read
 
+
+
+
+
+
+    
+-------------------------------------------------------------------------------
     steps:
     - name: Clonar Repositorio
       uses: actions/checkout@v4
